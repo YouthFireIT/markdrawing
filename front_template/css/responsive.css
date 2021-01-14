@@ -1,0 +1,19 @@
+@media only screen and (max-width: 1199px){
+	.my_nav li a{font-size: 11px}
+}
+@media only screen and (max-width: 991px){
+	.navbar{z-index: 9999}
+	.nav_serach_bar{display: none;}
+	.my_nav{position: relative;left: 0}
+	.my_nav li{width: 100% !important;display: block !important;padding: 0;margin: 0;border-radius: 0;padding:0 20px;border-bottom: 1px solid #ddd}
+	.my_nav li:last-child{border-bottom: none}
+	.modal_search{position: absolute;right: 70px;top:52px;border: 1px solid #ddd}
+	.modal_search i{padding: 5px}
+	.banner_img_wrap{text-align: center;}
+}
+@media only screen and (max-width: 767px){
+	.tnl_text{display: none;}
+	.top_nav_left{text-align: center;}
+	.top_nav_right {width: 100%;text-align: center;margin-top: -20px}
+	.top_nav_right ul{padding-left: 0}
+} 
