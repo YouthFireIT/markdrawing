@@ -85,10 +85,13 @@
                 <div class="col-lg-3 py-3">
                     <a href="#" class="fc_link_item">
                         <div class="fc_item_wrap">
-                            <img src="images/p1.png" alt="" class="img-fluid">
-                            <p class="py-3">Black & White Portrait Detailed</p>
-                            <div id="star_rating1" start="3" class="text-left d-block"></div>
-                            <h2 class="text-center">Tk 2012.34</h2>
+													<?php 
+														$image = App\ProductImage::where('product_id', $item->id)->first();	
+													?>
+                            <img src="{{ asset('/images').'/'.$image->image }}" alt="" class="img-fluid">
+                            <p class="py-3">{{ $item->name }}</p>
+                            {{-- <div id="star_rating1" start="3" class="text-left d-block"></div> --}}
+                            <h2 class="text-center">Tk {{ $item->price }}</h2>
                         </div>
                     </a>
                 </div>
