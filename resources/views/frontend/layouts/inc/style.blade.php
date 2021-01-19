@@ -8,6 +8,9 @@
  <link rel="stylesheet" href="{{asset('markdrawing/css/owl.carousel.css')}}" type="text/css">
  <link rel="stylesheet" href="{{asset('markdrawing/css/owl.theme.css')}}" type="text/css">
  <link rel="stylesheet" href="{{asset('markdrawing/css/jsRapStar.css')}}" type="text/css">
+ <link rel="stylesheet" type="text/css" href="{{asset('markdrawing/css/style.single_product_page.css')}}">
+ <link rel="stylesheet" type="text/css" href="{{asset('markdrawing/css/responsive.spp.css')}}">
  <link rel="icon" href="{{asset('images/icon.png')}}" sizes="16x16">
  <!-- ======font awesome kit====== -->
  <script src="https://kit.fontawesome.com/aca266facc.js" crossorigin="anonymous"></script>
+ @yield('style')

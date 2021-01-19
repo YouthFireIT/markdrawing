@@ -47,8 +47,8 @@
 <section id="navbar_part">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light px-0">
-            <a class="navbar-brand" href="index.html">
-                <img src="images/logo.webp" alt="" class="img-fluid my_logo">
+            <a class="navbar-brand" href="{{route('index')}}">
+                <img src="{{asset('markdrawing/img/logo.png')}}" alt="" class="img-fluid my_logo">
             </a>
             <!-- Button trigger modal -->
             <button type="button" class="btn text-dark modal_search d-lg-none d-md-block" data-toggle="modal" data-target="#exampleModal">
@@ -62,16 +62,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto my_nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home</a>
+                        <a class="nav-link" href="{{route('index')}}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="portrait.html">Portraits</a>
+                        <a class="nav-link" href="{{route('portait')}}">Portraits</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="artworkprints.html">Artwork Prints</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="family_portrait.html">Family Portrait</a>
+                        <a class="nav-link" href="{{route('family.portait')}}">Family Portrait</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="review.html">Reviews</a>

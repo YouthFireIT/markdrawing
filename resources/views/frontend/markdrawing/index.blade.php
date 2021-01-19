@@ -29,46 +29,46 @@
     </section>
     
 	<!-- drawing moment part -->
-	<section id="drawing_moment">
-		<div class="container">
-			<div class="row justify-content-center">
-				<span class="section_heading pb-5">
-					Get your Charlies Drawings moment
-				</span>
+		{{-- <section id="drawing_moment">
+			<div class="container">
+				<div class="row justify-content-center">
+					<span class="section_heading pb-5">
+						Get your markdrawing moment
+					</span>
+				</div>
+				<div class="row">
+					<div class="col-lg-6">
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/83IpYS6Bgk8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+					<div class="col-lg-6">
+						<p class="dm_text">
+							One of the most unique reasons to get a portrait from your photos with Charlie’s drawings in connecting people who did not get the chance to meet in person. Taking separate photos of people who never got the chance to meet and drawing them into a beautiful portrait is just the perfect way to create an emotional one off gift.
+						</p>
+						<p class="dm_text">
+							Photos can be from separate occasions and even eras. So if it’s an emotional Grandparent / Grandchild portrait or yourself with a much missed family member.
+						</p>
+					</div>
+				</div>
+				<div class="row pt-5">
+					<div class="col-lg-4">
+						<img src="images/dm1.png" alt="" class="img-fluid">
+					</div>
+					<div class="col-lg-4">
+						<img src="images/dm2.png" alt="" class="img-fluid">
+					</div>
+					<div class="col-lg-4">
+						<img src="images/dm3.jpg" alt="" class="img-fluid">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-auto">
+						<p class="dm_text text-center padding_c">
+							Family portraits are also another great gift for everyone, even the people who are incredibly hard to buy for. The thought of getting the whole family together for long enough to get a portrait drawn brings shivers down most peoples spines. The great thing about our portraits is they can be drawn from separate photos and all done with a click of a button. All you need is a nice snapshot of everyone and we do the rest of the work.
+						</p>
+					</div>
+				</div>
 			</div>
-			<div class="row">
-				<div class="col-lg-6">
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/83IpYS6Bgk8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-				</div>
-				<div class="col-lg-6">
-					<p class="dm_text">
-						One of the most unique reasons to get a portrait from your photos with Charlie’s drawings in connecting people who did not get the chance to meet in person. Taking separate photos of people who never got the chance to meet and drawing them into a beautiful portrait is just the perfect way to create an emotional one off gift.
-					</p>
-					<p class="dm_text">
-						Photos can be from separate occasions and even eras. So if it’s an emotional Grandparent / Grandchild portrait or yourself with a much missed family member.
-					</p>
-				</div>
-			</div>
-			<div class="row pt-5">
-				<div class="col-lg-4">
-					<img src="images/dm1.png" alt="" class="img-fluid">
-				</div>
-				<div class="col-lg-4">
-					<img src="images/dm2.png" alt="" class="img-fluid">
-				</div>
-				<div class="col-lg-4">
-					<img src="images/dm3.jpg" alt="" class="img-fluid">
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-auto">
-					<p class="dm_text text-center padding_c">
-						Family portraits are also another great gift for everyone, even the people who are incredibly hard to buy for. The thought of getting the whole family together for long enough to get a portrait drawn brings shivers down most peoples spines. The great thing about our portraits is they can be drawn from separate photos and all done with a click of a button. All you need is a nice snapshot of everyone and we do the rest of the work.
-					</p>
-				</div>
-			</div>
-		</div>
-    </section>
+		</section> --}}
     
 	<!-- Featured Collections -->
 	<section id="Featured_Collections" class="Featured_Collections">
@@ -80,10 +80,10 @@
 			</div>
 			<div class="row">
                  
-
+		
             @forelse ($feature_products as $item)
                 <div class="col-lg-3 py-3">
-                    <a href="#" class="fc_link_item">
+                    <a href="{{route('product.show',$item->slug)}}" class="fc_link_item">
                         <div class="fc_item_wrap">
 													<?php 
 														$image = App\ProductImage::where('product_id', $item->id)->first();	
@@ -180,5 +180,6 @@
 				</div>
 			</div>
 		</div>
-    </section>
+	</section>
+	
 @endsection

@@ -23,6 +23,7 @@ class PagesController extends Controller
     	$products = Product::orderBy('id', 'desc')->get();
     	$feature_products = Product::where('featured',1)->orderBy('id','desc')->paginate(40);
         return view('frontend.pages.index', compact('sliders','products','feature_products'));*/
+       
         /**
          * New Index Code
          */
@@ -251,5 +252,21 @@ class PagesController extends Controller
         return view('frontend.pages.product.offer', compact('offer','products'));
         
     }
+
+    /**
+     * @author
+     * yeapes
+     * return response
+     */
     
+    public function familyPortait(){
+        return view('frontend.markdrawing.family-portait');
+    }
+
+    /**
+     * return response
+     */
+    public function portait(){
+        return view('frontend.markdrawing.portait');
+    }
 }
