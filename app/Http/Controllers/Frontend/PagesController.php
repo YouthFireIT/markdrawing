@@ -15,14 +15,24 @@ class PagesController extends Controller
 
     //home page
     public function index() {
-    	$sliders = Slider::orderBy('id', 'desc')->get();
+        /**
+         * Old Index Code
+         */
+
+    	/*$sliders = Slider::orderBy('id', 'desc')->get();
     	$products = Product::orderBy('id', 'desc')->get();
     	$feature_products = Product::where('featured',1)->orderBy('id','desc')->paginate(40);
-    	return view('frontend.pages.index', compact('sliders','products','feature_products'));
+        return view('frontend.pages.index', compact('sliders','products','feature_products'));*/
+        /**
+         * New Index Code
+         */
+        $feature_products = Product::where('featured',1)->limit(8)->get();
+        return view('frontend.markdrawing.index',compact('feature_products'));
     }
 
-    //show pages
 
+
+    //show pages 
     public function show($slug)
     {
         $page = Page::where('slug',$slug)->first();

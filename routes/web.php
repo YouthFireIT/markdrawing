@@ -9,6 +9,9 @@ Route::get('/portfoliomain',function(){
   return view('frontend.pages.portfoliomain');
 });
 
+//Route::view('/test','frontend.markdrawing.index');
+
+
 //// Temp order Store ////
 Route::get('/temp/order/store','Frontend\CartsController@temp_order_store');
 
