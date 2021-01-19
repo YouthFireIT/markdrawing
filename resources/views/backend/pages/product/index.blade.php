@@ -9,9 +9,10 @@
 <div class="row">
 
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-    
+  <a href="{{ route('admin.product.create') }}" class="btn btn-primary float-right mr-3">Add New</a>
     <div class="card">
         <h5 class="card-header">Manage Product</h5>
+        
         <div class="card-body">
             @include('backend.layouts.error')
             
@@ -22,15 +23,12 @@
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Feature</th>
-                    <th>Week Deals</th>
-                    <th>Onsale</th>
-                    <th>Top Rated</th>
                     <th>Action</th>
                 </tr>
 
                 @foreach($products as $product)
                     <tr>
-                        <td>#</td>
+                        <td>{{ $loop->index+1 }}</td>
                         <td>{{$product->title}}</td>
                         <td>{{$product->price}}</td>
                         <td>{{$product->quantity}}</td>
@@ -39,48 +37,6 @@
                               <div class="col-12 col-sm-8 col-lg-6 pt-1">
                                   <a id="checkbox" href="{{route('admin.product.featured', $product->id)}}">
                                       @if($product->featured == 1)
-                                      <i class="fas fa-star"></i>
-                                      @else
-                                      <i class="far fa-star"></i>
-                                      @endif
-                                  </a>
-                              </div>
-                          </div>
-                        </td>
-
-                        <td>
-                          <div class="form-group row">
-                              <div class="col-12 col-sm-8 col-lg-6 pt-1">
-                                  <a id="checkbox" href="{{route('admin.product.week_deals', $product->id)}}">
-                                      @if($product->week_deals == 1)
-                                      <i class="fas fa-star"></i>
-                                      @else
-                                      <i class="far fa-star"></i>
-                                      @endif
-                                  </a>
-                              </div>
-                          </div>
-                        </td>
-
-                        <td>
-                          <div class="form-group row">
-                              <div class="col-12 col-sm-8 col-lg-6 pt-1">
-                                  <a id="checkbox" href="{{route('admin.product.onsale', $product->id)}}">
-                                      @if($product->onsale == 1)
-                                      <i class="fas fa-star"></i>
-                                      @else
-                                      <i class="far fa-star"></i>
-                                      @endif
-                                  </a>
-                              </div>
-                          </div>
-                        </td>
-
-                        <td>
-                          <div class="form-group row">
-                              <div class="col-12 col-sm-8 col-lg-6 pt-1">
-                                  <a id="checkbox" href="{{route('admin.product.toprated', $product->id)}}">
-                                      @if($product->toprated == 1)
                                       <i class="fas fa-star"></i>
                                       @else
                                       <i class="far fa-star"></i>

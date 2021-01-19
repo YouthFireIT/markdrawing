@@ -31,8 +31,7 @@ class ProductController extends Controller
     {
         $categories = Category::orderBy('name', 'asc')->get();
         $main_categories = Category::orderBy('name','asc')->where('parent_id', Null)->get();
-        $brands = Brand::orderBy('name', 'asc')->get();
-        return view('backend.pages.product.create',compact('categories','main_categories','brands'));
+        return view('backend.pages.product.create',compact('categories','main_categories'));
     }
 
     public function store(Request $request)
@@ -48,13 +47,8 @@ class ProductController extends Controller
     	$product = new Product;
 
     	$product->title = $request->title;
-        $product->title_bd = $request->title_bd;
     	$product->description = $request->description;
-        $product->description_bd = $request->description_bd;
-        $product->specifications = $request->specifications;
-        $product->specifications_bd = $request->specifications_bd;
-    	// $product->price = $request->price;
-        // $product->offer_price = $request->offer_price;
+    	$product->price = $request->price;
     	$product->quantity = $request->quantity;
     	//$product->slug = Str::slug($request->title,'-');
 
@@ -72,42 +66,8 @@ class ProductController extends Controller
 
         $product->sku = $request->sku;
     	$product->category_id = $request->category;
-    	$product->brand_id = $request->brand;
-    	$product->admin_id = 1;
-
-        if (strlen($request->attribute_option[0]) > 0 && strlen($request->attribute_name[0])) {
-            $total_attribute = count($request->attribute_name);
-        
-            for ($i=0; $i < $total_attribute ; $i++) { 
-
-                $attributes[$request->attribute_name[$i]][] = $request->attribute_option[$i];
-            }
-
-            $product->attribute_options = serialize($attributes);
-            
-        }else {
-            $product->attribute_options = Null;
-        }
-        
-           
- /*       $product->attribute_set_id = $request->attribute_set_id;
-
-        $attributes_id_array = $request->attributes_id;
-
-        //print_r($attributes_id_array);
-        $attributes_id_serialize = serialize($attributes_id_array);
-
-        $product->attributes_id = $attributes_id_serialize;
-
-        if (!is_null($request->attribute_options)) {
-            //for attribute options
-            $options = $request->attribute_options;
-            $options = serialize($options);
-
-            $product->attribute_options = $options;
-        }
-*/
-        
+    	$product->status = $request->status;
+    	$product->admin_id = 1;        
 
     	$product->save();
 
@@ -152,8 +112,7 @@ class ProductController extends Controller
         $categories = Category::orderBy('name', 'asc')->get();
         $main_categories = Category::orderBy('name','asc')->where('parent_id', Null)->get();
         $sub_categories = Category::orderBy('name','asc')->whereNotNull('parent_id')->get();
-        $brands = Brand::orderBy('name', 'asc')->get();
-        return view('backend.pages.product.editupdate',compact('product','categories','main_categories','sub_categories','brands'));
+        return view('backend.pages.product.editupdate',compact('product','categories','main_categories','sub_categories'));
     	//return view('backend.pages.product.edit')->with('product',$product);
     }
 
@@ -162,8 +121,7 @@ class ProductController extends Controller
 
     	$request->validate([
             'title' => 'required|max:150',
-            'description' => 'required',
-            // 'price' => 'required',
+            'price' => 'required',
             'quantity' => 'required',
             
         ]);
@@ -171,37 +129,13 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         $product->title = $request->title;
-        $product->title_bd = $request->title_bd;
         $product->description = $request->description;
-        $product->description_bd = $request->description_bd;
-        $product->specifications = $request->specifications;
-        $product->specifications_bd = $request->specifications_bd;
-        // $product->price = $request->price;
-        // $product->offer_price = $request->offer_price;
+        $product->price = $request->price;
         $product->quantity = $request->quantity;
         //$product->slug = Str::slug($request->title,'-');
         $product->sku = $request->sku;
         $product->category_id = $request->category;
-        $product->brand_id = $request->brand;
         $product->admin_id = 1;
-        if (strlen($request->attribute_option[0]) > 0 && strlen($request->attribute_name[0])) {
-            $total_attribute = count($request->attribute_name);
-        
-            for ($i=0; $i < $total_attribute ; $i++) { 
-
-                $attributes[$request->attribute_name[$i]][] = $request->attribute_option[$i];
-            }
-
-            $product->attribute_options = serialize($attributes);
-            
-        }else {
-            $product->attribute_options = Null;
-        }
-        
-
-        
-        
-
         $product->save();
 
         if ( isset($request->product_image) && count($request->product_image) > 0) {
@@ -225,13 +159,10 @@ class ProductController extends Controller
             
         }
         
-
         session()->flash('success', 'Product has been updated successfully!!');
-    	return back();
-
-
-    	
+    	return back();   	
     }
+
     public function delete($id)
     {
     	$product = Product::find($id);
@@ -258,9 +189,7 @@ class ProductController extends Controller
             $new_offer->save();
 
             }
-        }
-        
-        
+        }        
 
     	if (!is_null($product)) {
     		$product->delete();

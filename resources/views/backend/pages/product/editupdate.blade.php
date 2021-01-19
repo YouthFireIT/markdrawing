@@ -26,10 +26,6 @@
                     <label for="name" class="col-form-label">Title*</label>
                     <input id="name" type="text" class="form-control" name="title" required="" value="{{$product->title}}">
                     </div>
-                    <div class="col">
-                    <label for="name" class="col-form-label">নাম*</label>
-                    <input id="name" type="text" class="form-control" name="title_bd" value="{{$product->title_bd}}">
-                    </div>
 
                     </div>
                 </div>
@@ -40,36 +36,8 @@
                     <label for="description">Description*</label>
                     <textarea class="form-control" id="description" rows="3" name="description" required="">{{$product->description}}</textarea>
                     </div>
-                    
-                    {{-- <div class="col">
-                    <label for="description_bd">বিবরণ*</label>
-                    <textarea class="form-control" id="description_bd" rows="3" name="description_bd" >{{$product->description_bd}}</textarea>
-                    </div> --}}
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <div class="row">
-                    <div class="col">
-                    <label for="specifications">Specifications</label>
-                    <textarea class="form-control" id="specifications" rows="3" name="specifications">{{$product->specifications}}</textarea>
-                    </div>
-                    {{-- <div class="col">
-                    <label for="specifications_bd">স্পেসিফিকেশন্স</label>
-                    <textarea class="form-control" id="specifications_bd" rows="3" name="specifications_bd">{{$product->specifications_bd}}</textarea>
-                    </div> --}}
-                    </div>
-                </div>
-                
-                {{-- <div class="form-group">
-                    <label for="price" class="col-form-label">Price</label>
-                    <input id="price" type="number" class="form-control" name="price" value="{{$product->price}}" required="">
-                </div>
-
-                <div class="form-group">
-                    <label for="offer_price" class="col-form-label">Offer Price</label>
-                    <input id="offer_price" type="number" class="form-control" name="offer_price" value="{{$product->offer_price}}">
-                </div> --}}
 
                 <div class="form-group">
                     <label for="quantity" class="col-form-label">Quantity</label>
@@ -117,70 +85,26 @@
                                         selected="" 
                                     @endif
                                 
-                                >- {{ $sub_category->name }} </option>
-                            
+                                >- {{ $sub_category->name }} </option>                            
                             
                         @endforeach
-                    @endforeach
-                      
+                    @endforeach                      
                     </select>
                   </div>
 
-                  <div class="form-group">
-                    <label for="brand">Brand</label>
-                    <select class="form-control" id="brand" name="brand">
-                        <option value="">Select Brand</option>
-                        @foreach($brands as $brand)
-                            <option value="{{ $brand->id }}"
-                                @if($brand->id == $product->brand_id)
-                                    selected="" 
-                                @endif
-                            >
-                            {{ $brand->name }}</option>
-                        @endforeach
-                      
+                <div class="form-group">
+                    <label for="price" class="col-form-label">Price</label>
+                    <input id="price" type="text" class="form-control" name="price" value="{{$product->price}}">
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Status</label>
+                    
+                    <select class="form-control" id="status" name="status">                       
+                       <option value="0" style="font-weight: 700;" >InActive</option> 
+                       <option value="1" style="font-weight: 700;" >Active</option>                     
                     </select>
-                  </div>
-                  <label>Add/Update Attributes</label><br>
-                @php
-                    $attributes = $product->attribute_options;
-                    if (!is_null($attributes)) {
-                        # code...
-
-                        $unserialize_attributes = unserialize($attributes);
-                        $all_keys = array_keys($unserialize_attributes);
-                        
-                    }
-                @endphp
-
-                @if(!is_null($attributes))
-                    @foreach($all_keys as $key)
-
-                        <div class="field_wrapper_update">
-                            <div class="form-group col-md-8" style="padding-left: 0">
-
-                                <input type="hidden" name="attribute_name[]" class="form-control" value="{{ $key }}" /><br>
-
-                                @foreach($unserialize_attributes[$key] as $value)
-                                <label style="font-size: 13px;">Price (Format: 1 kg - 500 ৳)</label><br>
-                                <textarea name="attribute_option[]" class="form-control" placeholder="Attribute option must need to separate by ,">{{$value}}</textarea><br>
-                                @endforeach
-
-                            
-                            </div>
-                        </div>
-
-                        
-
-                    @endforeach
-
-                @endif
-
-                {{-- <div class="field_wrapper">
-                    <div class="form-group col-md-8" style="padding-left: 0">
-                        <a href="javascript:void(0);" class="add_button btn btn-success" title="Add field">Add More Attributes</a>
-                    </div>
-                </div><br> --}}
+                </div>
 
 
                 <div class="form-group">
