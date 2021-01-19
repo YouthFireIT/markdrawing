@@ -30,13 +30,9 @@
                     <label for="name" class="col-form-label">Title*</label>
                     <input id="name" type="text" class="form-control" name="title" required="">
                     </div>
-                    {{-- <div class="col">
-                    <label for="name" class="col-form-label">নাম*</label>
-                    <input id="name" type="text" class="form-control" name="title_bd" >
-                    </div> --}}
-
                     </div>
                 </div>
+
 
                 <div class="form-group">
                     <div class="row">
@@ -44,36 +40,8 @@
                     <label for="description">Description*</label>
                     <textarea class="form-control" id="description" rows="3" name="description" required=""></textarea>
                     </div>
-                    
-                    {{-- <div class="col">
-                    <label for="description">বিবরণ*</label>
-                    <textarea class="form-control" id="description" rows="3" name="description_bd" ></textarea>
-                    </div>
-                    </div> --}}
-                </div>
-
-                <div class="form-group">
-                    <div class="row">
-                    <div class="col">
-                    <label for="specifications">Specifications</label>
-                    <textarea class="form-control" id="specifications" rows="3" name="specifications"></textarea>
-                    </div>
-                    {{-- <div class="col">
-                    <label for="specifications">স্পেসিফিকেশন্স</label>
-                    <textarea class="form-control" id="specifications" rows="3" name="specifications_bd"></textarea>
-                    </div> --}}
                     </div>
                 </div>
-                
-                {{-- <div class="form-group">
-                    <label for="price" class="col-form-label" >Price*</label>
-                    <input id="price" type="number" class="form-control" name="price" required="">
-                </div> --}}
-
-                {{-- <div class="form-group">
-                    <label for="offer_price" class="col-form-label">Offer Price</label>
-                    <input id="offer_price" type="number" class="form-control" name="offer_price">
-                </div> --}}
 
                 <div class="form-group">
                     <label for="quantity" class="col-form-label">Quantity*</label>
@@ -96,92 +64,32 @@
                        @php
                            $sub_categories = Category::where('parent_id', $main_category->id)->orderBy('name','asc')->get();
                        @endphp
-                        @foreach($sub_categories as $sub_category)
-                            
-                                <option value="{{$sub_category->id}}">- {{ $sub_category->name }} </option>
-                            
-                            
+                        @foreach($sub_categories as $sub_category)                            
+                            <option value="{{$sub_category->id}}">- {{ $sub_category->name }} </option>                                                        
                         @endforeach
-                    @endforeach
-                      
+                    @endforeach                      
                     </select>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="brand">Brand</label>
-                    <select class="form-control" id="brand" name="brand">
-                        <option value="">Select Brand</option>
-                        @foreach($brands as $brand)
-                            <option value="{{ $brand->id }}">{{ $brand->name }}</option>
-                        @endforeach
-                      
-                    </select>
-                  </div>
-
-
-                {{-- <div class="form-group">
-                <label class="col-form-label">Attributes</label><br>
-               
-                @foreach($attributes as $attribute)
-
-                    @php
-                      $attribute_ids = unserialize($attributeset->attribute_id);
-                    @endphp
-
-
-                    @foreach ($attribute_ids as $attribute_id)
-                          @if ($attribute->id == $attribute_id)
-                              
-                            <b>{{ $attribute->name }}</b>
-                            <input type="hidden" name="attribute_set_id" value="{{ $attributeset->id }}">
-                            <input type="hidden" name="attributes_id[]" value="{{ $attribute->id }}">
-                             <div class="form-check">
-                              @php
-                                $options = unserialize($attribute->options);
-                              @endphp
-                              
-
-                              @foreach($options as $option)
-                                
-                                <input class="form-check-input" type="checkbox" id="gridCheck" value="{{ $option }}" name="attribute_options[]">
-                                 <label class="form-check-label" for="gridCheck">
-                                {{ $option }}
-                              </label>
-                              <br>
-                              @endforeach
-                            
-
-                              </div>
-                             
-                              <br>
-
-                          @endif
-                    @endforeach
-
-
-
-                    
-                @endforeach
-
-
-                
-                </div> --}}
-
+                </div>
 
                 <div class="field_wrapper">
                     <div class="form-group col-md-8" style="padding-left: 0">
                         <input type="hidden" name="attribute_name[]" class="form-control" value="Price" /><br>
-                        <label>Price (Format: 1 kg - 500 ৳)</label><br>
-                        <textarea name="attribute_option[]" class="form-control" placeholder="Prices must need to separate by ,"></textarea><br>
-                        {{-- <a href="javascript:void(0);" class="add_button btn btn-success" title="Add field">Add More</a> --}}
+                        <label>Price</label><br>
+                        <input id="price" type="text" class="form-control" name="price" required="">
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label for="category">Status</label>
+                    <select class="form-control" id="status" name="status">                       
+                       <option value="0" style="font-weight: 700;" >InActive</option> 
+                       <option value="1" style="font-weight: 700;" >Active</option>                     
+                    </select>
+                </div>
 
                 <div class="form-group">
                     <input type="submit" class="btn btn-success" value="Add" id="submit">
                 </div>
-
                 
             </form>
         </div>
@@ -194,6 +102,7 @@
 @section('script')
 
 <script type="text/javascript">
+
 $(document).ready(function(){
     var maxField = 10; //Input fields increment limitation
     var addButton = $('.add_button'); //Add button selector
@@ -220,9 +129,17 @@ $(document).ready(function(){
 });
 </script>
 
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote-bs4.min.js"></script>
+
 
 <script src="{{ asset('assets/admin/vendor/drug-drop-image-upload/product-image-uploader.js') }}"></script>
 <script type="text/javascript">
+$('#description').summernote({
+        placeholder: '',
+        tabsize: 2,
+        height: 300
+      });
     $('.input-images').imageUploader();
 
     //Save button
