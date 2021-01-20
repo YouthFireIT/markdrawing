@@ -5,32 +5,28 @@
 <div class="row">
 
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-    
+
     <div class="card">
-        <h5 class="card-header">Manage Brands</h5>
+        <div class="card-header">
+            <h5>Manage Canvas Print Option</h5>
+            <a href="{{ route('admin.brand.store') }}" class="btn btn-primary float-right mr-3">Add New</a>
+        </div>
         <div class="card-body">
             @include('backend.layouts.error')
-            
+
             <table class="table table-hover tablie-striped">
                 <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <th>Image</th>
+                    <th>Amount</th>
                     <th>Action</th>
                 </tr>
 
                 @foreach($brands as $brand)
                     <tr>
-                        <td>#</td>
+                        <td>{{ $loop->index+1 }}</td>
                         <td>{{$brand->name}}</td>
-
-                        <td>
-                          @if($brand->image != NULL)
-                          <img src="{{ asset('images/brands/'.$brand->image) }}" width="100">
-                          @else
-                          No image
-                          @endif
-                        </td>
+                        <td>{{ $brand->amount }}</td>
 
                         <td>
                             <a href="{{ route('admin.brand.edit', $brand->id) }}" class="btn btn-success">Edit</a>
@@ -63,8 +59,8 @@
                     </tr>
                 @endforeach
 
-            </table>        
-               
+            </table>
+
         </div>
 
     </div>

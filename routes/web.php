@@ -166,7 +166,7 @@ Route::group(['prefix'=> 'admin'], function() {
 
 	//brand routes
 
-	Route::group(['prefix'=> 'brands'], function() {
+	Route::group(['prefix'=> 'canvasprint'], function() {
 		Route::get('/','Backend\BrandController@manage')->name('admin.brands');
 		Route::get('/create','Backend\BrandController@create')->name('admin.brand.create');
 		Route::get('/edit/{id}','Backend\BrandController@edit')->name('admin.brand.edit');
@@ -305,6 +305,16 @@ Route::group(['prefix'=> 'admin'], function() {
 		Route::get('/edit/{id}','Backend\ShippingController@edit')->name('admin.shipping.edit');
 		Route::post('/update/{id}','Backend\ShippingController@update')->name('admin.shipping.update');
 		Route::post('/delete/{id}','Backend\ShippingController@delete')->name('admin.shipping.delete');
+	});
+
+
+	Route::group(['prefix'=> 'canvasOption'], function() {
+		Route::get('/','Backend\AttributeController@manage')->name('admin.attributes');
+		Route::get('/create','Backend\AttributeController@create')->name('admin.attribute.create');
+		Route::get('/edit/{id}','Backend\AttributeController@edit')->name('admin.attribute.edit');
+		Route::post('/update/{id}','Backend\AttributeController@update')->name('admin.attribute.update');
+		Route::post('/create','Backend\AttributeController@store')->name('admin.attribute.store');
+		Route::post('/delete/{id}','Backend\AttributeController@delete')->name('admin.attribute.delete');
 	});
 
 /*	//attribute routes

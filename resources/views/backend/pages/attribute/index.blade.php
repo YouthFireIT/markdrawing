@@ -5,34 +5,28 @@
 <div class="row">
 
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-    
+
     <div class="card">
-        <h5 class="card-header">Manage Attributes</h5>
-        <a href="{{route('admin.attribute.create')}}" class="btn btn-dark col-sm-4">Add New</a>
+        <div class="card-header">
+            <h5>Manage Canvas Option</h5>
+            <a href="{{route('admin.attribute.create')}}" class="btn btn-primary float-right mr-3">Add New</a>
+        </div>
         <div class="card-body">
             @include('backend.layouts.error')
-            
+
             <table class="table table-hover tablie-striped">
                 <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <th>Options</th>
+                    <th>Amount</th>
                     <th>Action</th>
                 </tr>
 
                 @foreach($attributes as $attribute)
                     <tr>
-                        <td>#</td>
+                        <td>{{ $loop->index+1 }}</td>
                         <td>{{$attribute->name}}</td>
-                        
-                        <td>
-                          @php
-                            $options = unserialize($attribute->options);
-                          @endphp
-                          @foreach($options as $option)
-                            {{ $option }}
-                          @endforeach
-                        </td>
+                        <td>{{$attribute->amount}}</td>
 
                         <td>
                             <a href="{{ route('admin.attribute.edit', $attribute->id) }}" class="btn btn-success">Edit</a>
@@ -65,8 +59,8 @@
                     </tr>
                 @endforeach
 
-            </table>        
-               
+            </table>
+
         </div>
 
     </div>

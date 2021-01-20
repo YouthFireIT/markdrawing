@@ -7,8 +7,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Brand;
-use Image;
-use File;
 
 class BrandController extends Controller
 {
@@ -33,30 +31,11 @@ class BrandController extends Controller
     	$brand = new Brand;
 
     	$brand->name = $request->name;
-        $brand->name_bd = $request->name_bd;
-
-    	$brand->description = $request->description;
-  
-
-    	if ( isset($request->image) ) {
-
-    			$image = $request->image;
-    			//make image name
-    			$img = time().'.'.$image->getClientOriginalExtension();
-    			//image location
-    			$location = public_path('images/brands/'.$img);
-
-    			Image::make($image)->save($location);
-
-    			$brand->image = $img;
-    		
-    		
-    	}
-
+      $brand->amount = $request->amount;
     	$brand->save();
 
 
-    	session()->flash('success', 'Brand has been added successfully!!');
+    	session()->flash('success', 'Print has been added successfully!!');
     	return redirect()->route('admin.brand.create');
 
 
@@ -87,43 +66,16 @@ class BrandController extends Controller
     	$brand = Brand::find($id);
 
     	$brand->name = $request->name;
-        $brand->name_bd = $request->name_bd;
-    	$brand->description = $request->description;
-
-    	if ( isset($request->image) ) {
-
-    			if (File::exists('images/brands/'.$brand->image)) {
-    				File::delete('images/brands/'.$brand->image);
-    			}
-
-    			$image = $request->image;
-    			//make image name
-    			$img = time().'.'.$image->getClientOriginalExtension();
-    			//image location
-    			$location = public_path('images/brands/'.$img);
-
-    			Image::make($image)->save($location);
-
-    			$brand->image = $img;
-    		
-    		
-    	}
+      $brand->amount = $request->amount;
 
     	$brand->save();
-    	session()->flash('success', 'Brand updated successfully!!');
-    	return redirect()->route('admin.brands');
-
-
-    	
-    }
+    	session()->flash('success', 'Print updated successfully!!');
+    	return redirect()->route('admin.brands');    	
+		}
+		
     public function delete($id)
     {
     	$brand = Brand::find($id);
-
-    	if (File::exists('images/brands/'.$brand->image)) {
-			File::delete('images/brands/'.$brand->image);
-		}
-
     	if (!is_null($brand)) {
     		$brand->delete();
     	}
