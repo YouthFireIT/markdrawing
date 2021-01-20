@@ -18,11 +18,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="priority" class="col-form-label">Priority</label>
-                    <input id="priority" type="text" class="form-control" name="priority">
-                </div>
-
-                <div class="form-group">
                     <input type="submit" class="btn btn-success" value="Add">
                 </div>
 

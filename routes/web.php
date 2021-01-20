@@ -307,6 +307,16 @@ Route::group(['prefix'=> 'admin'], function() {
 		Route::post('/delete/{id}','Backend\ShippingController@delete')->name('admin.shipping.delete');
 	});
 
+
+	Route::group(['prefix'=> 'attributes'], function() {
+		Route::get('/','Backend\AttributeController@manage')->name('admin.attributes');
+		Route::get('/create','Backend\AttributeController@create')->name('admin.attribute.create');
+		Route::get('/edit/{id}','Backend\AttributeController@edit')->name('admin.attribute.edit');
+		Route::post('/update/{id}','Backend\AttributeController@update')->name('admin.attribute.update');
+		Route::post('/create','Backend\AttributeController@store')->name('admin.attribute.store');
+		Route::post('/delete/{id}','Backend\AttributeController@delete')->name('admin.attribute.delete');
+	});
+
 /*	//attribute routes
 
 	Route::group(['prefix'=> 'attributes'], function() {
