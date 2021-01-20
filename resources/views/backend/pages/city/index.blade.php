@@ -15,7 +15,7 @@
                 <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <th>Priority</th>
+                    {{-- <th>Priority</th> --}}
                     <th>Action</th>
                 </tr>
 
@@ -24,9 +24,9 @@
                         <td>#</td>
                         <td>{{$city->name}}</td>
 
-                        <td>
+                        {{-- <td>
                           {{$city->priority}}
-                        </td>
+                        </td> --}}
 
                         <td>
                             <a href="{{ route('admin.city.edit', $city->id) }}" class="btn btn-success">Edit</a>

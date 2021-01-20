@@ -17,10 +17,10 @@
                     <input id="name" type="text" class="form-control" name="name" value="{{ $city->name }}">
                 </div>
 
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="priority" class="col-form-label">Priority</label>
                     <input id="priority" type="text" class="form-control" name="priority" value="{{ $city->priority }}" >
-                </div>
+                </div> --}}
 
                 <div class="form-group">
                     <input type="submit" class="btn btn-success" value="Update">

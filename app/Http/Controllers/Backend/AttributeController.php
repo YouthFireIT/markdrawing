@@ -24,18 +24,14 @@ class AttributeController extends Controller
 
     	$request->validate([
     		'name' => 'required|max:150',
-    		'options' => 'required',
+    		'amount' => 'required',
     		
     	]);
     	
     	$attribute = new Attribute;
 
-    	$attribute->name = $request->name;
-
-    	$options = explode(',', $request->options);
-    	$options = serialize($options);
-
-    	$attribute->options = $options;
+        $attribute->name = $request->name;
+        $attribute->amount = $request->amount;
 
     	$attribute->save();
 
@@ -65,18 +61,14 @@ class AttributeController extends Controller
     	
     	$request->validate([
     		'name' => 'required|max:150',
-    		'options' => 'required',
+    		'amount' => 'required',
     		
     	]);
     	
     	$attribute = Attribute::find($id);
 
-    	$attribute->name = $request->name;
-
-    	$options = explode(',', $request->options);
-    	$options = serialize($options);
-
-    	$attribute->options = $options;
+        $attribute->name = $request->name;
+        $attribute->amount = $request->amount;
 
     	$attribute->save();
 
@@ -88,41 +80,6 @@ class AttributeController extends Controller
     public function delete($id)
     {
     	$attribute = Attribute::find($id);
-
-        $attributesets = AttributeSet::orderBy('id','asc')->get();
-
-        foreach ($attributesets as $attributeset) {
-            //Attribute id in attributes set
-            $attribute_ids = $attributeset['attribute_id'];
-            $attribute_ids = unserialize($attribute_ids);
-
-            foreach ($attribute_ids as $attribute_id) {
-                if ($attribute_id == $id) {
-
-                    $attributesetneedtoupdate = AttributeSet::find($attributeset['id']);
-
-                    $attribute_id_array = unserialize($attributesetneedtoupdate->attribute_id); 
-
-                    if (count($attribute_id_array) == 1) {
-                        $attributesetneedtoupdate->delete();
-                    }
-                    else{
-
-                    $arraytostring = implode(',', $attribute_ids);
-                    $stringreplace = str_replace(",$attribute_id", '', $arraytostring);
-                    $updatedattribute_ids = explode(',', $stringreplace);
-                    $serialize_updatedattribute_ids = serialize($updatedattribute_ids);
-
-
-                    $attributesetneedtoupdate->attribute_id = $serialize_updatedattribute_ids;
-                    $attributesetneedtoupdate->save();
-                    }
-
-                }
-                
-            }
-        }
-
     	$attribute->delete();
 
     	session()->flash('success', 'Attribute has been deleted successfully!!');

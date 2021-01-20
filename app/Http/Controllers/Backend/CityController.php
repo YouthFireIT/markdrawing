@@ -21,18 +21,15 @@ class CityController extends Controller
     {
 
     	$request->validate([
-    		'name' => 'required|max:150',
-    		'priority' => 'required'
-    		
+    		'name' => 'required|max:150',    		
     	]);
     	
     	$city = new City;
 
     	$city->name = $request->name;
-    	$city->priority = $request->priority;
     	$city->save();
 
-    	session()->flash('success','New city has been added successfully.');
+    	session()->flash('success','New Country has been added successfully.');
     	return redirect()->route('admin.city.create');
 
 
@@ -55,18 +52,15 @@ class CityController extends Controller
     public function update(Request $request, $id)
     {
     	$request->validate([
-    		'name' => 'required|max:150',
-    		'priority' => 'required'
-    		
+    		'name' => 'required|max:150'    		
     	]);
 
     	$city = City::find($id);
 
     	$city->name = $request->name;
-    	$city->priority = $request->priority;
     	$city->save();
 
-    	session()->flash('success','New city has been updated successfully.');
+    	session()->flash('success','New Country has been updated successfully.');
     	return redirect()->route('admin.cities');
 
 
@@ -81,7 +75,7 @@ class CityController extends Controller
     		$city->delete();
     	}
 
-    	session()->flash('success', 'City has been deleted successfully!!');
+    	session()->flash('success', 'Country has been deleted successfully!!');
     	return back();
     }
 }

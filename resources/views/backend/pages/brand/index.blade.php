@@ -7,7 +7,7 @@
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
     
     <div class="card">
-        <h5 class="card-header">Manage Brands</h5>
+        <h5 class="card-header">Manage Canvas Print</h5>
         <div class="card-body">
             @include('backend.layouts.error')
             
@@ -15,22 +15,15 @@
                 <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <th>Image</th>
+                    <th>Amount</th>
                     <th>Action</th>
                 </tr>
 
                 @foreach($brands as $brand)
                     <tr>
-                        <td>#</td>
+                        <td>{{ $loop->index+1 }}</td>
                         <td>{{$brand->name}}</td>
-
-                        <td>
-                          @if($brand->image != NULL)
-                          <img src="{{ asset('images/brands/'.$brand->image) }}" width="100">
-                          @else
-                          No image
-                          @endif
-                        </td>
+                        <td>{{ $brand->amount }}</td>
 
                         <td>
                             <a href="{{ route('admin.brand.edit', $brand->id) }}" class="btn btn-success">Edit</a>
