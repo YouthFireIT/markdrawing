@@ -5,12 +5,15 @@
 <div class="row">
 
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-    
+
     <div class="card">
-        <h5 class="card-header">Manage Category</h5>
+        <div class="card-header">
+            <h5>Manage Category</h5>
+            <a href="{{ route('admin.category.store') }}" class="btn btn-primary float-right mr-3">Add New</a>
+        </div>
         <div class="card-body">
             @include('backend.layouts.error')
-            
+
             <table class="table table-hover tablie-striped">
                 <tr>
                     <th>#</th>
@@ -32,7 +35,7 @@
                           No image
                           @endif
                         </td>
-                        
+
                         <td>
                           @if ($category->parent_id == NULL)
                             Primary Category
@@ -72,8 +75,8 @@
                     </tr>
                 @endforeach
 
-            </table>        
-               
+            </table>
+
         </div>
 
     </div>

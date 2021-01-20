@@ -1,15 +1,15 @@
 @extends('backend.layouts.master')
 
-@section('save_button')
+{{-- @section('save_button')
     <a href="#" id="save_button">Add</a>
-@endsection
+@endsection --}}
 
 @section('content')
 
 <div class="row">
 
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-    
+
     <div class="card">
         <h5 class="card-header">Add New Category</h5>
         <div class="card-body">
@@ -22,11 +22,11 @@
                         <label for="name" class="col-form-label">Name</label>
                         <input id="name" type="text" class="form-control" name="name" required="">
                         </div>
-
+{{--
                         <div class="col">
                         <label for="name_bd" class="col-form-label">নাম</label>
                         <input id="name_bd" type="text" class="form-control" name="name_bd">
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
@@ -35,7 +35,7 @@
                     <textarea class="form-control" id="description" rows="3" name="description"></textarea>
                 </div>
 
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="parentcategory">Select Parent Category</label>
                     <select class="form-control" id="parentcategory" name="parentcategory">
                         <option value="">Select Category</option>
@@ -45,30 +45,30 @@
                                 @if($sub_category->parent_id == $main_category->id)
                                     <option value="{{$sub_category->id}}">- {{ $sub_category->name }} </option>
                                 @endif
-                                
+
                             @endforeach
                         @endforeach
                     </select>
-                </div>
+                </div> --}}
 
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="image" class="col-form-label">Banner Image (1370 x 420)px</label>
                     <div class="col-md-4">
                     <input id="image" type="file" class="form-control" name="image">
-                    </div>                   
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="thumbnail" class="col-form-label">Thumbnail Image (300 x 300)px</label>
                     <div class="col-md-4">
                     <input id="thumbnail" type="file" class="form-control" name="thumbnail">
-                    </div>                   
-                </div>
+                    </div>
+                </div> --}}
 
                 <div class="form-group">
                     <input type="submit" class="btn btn-success" value="Add" id="submit">
                 </div>
 
-                
+
             </form>
         </div>
 
@@ -77,12 +77,12 @@
 
 @endsection
 
-@section('script')
+{{-- @section('script')
 <script type="text/javascript">
 
     //Save button
     $("#save_button").click(function(){
-    $("#submit").click(); 
+    $("#submit").click();
     });
 </script>
-@endsection
+@endsection --}}

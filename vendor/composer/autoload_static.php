@@ -616,12 +616,14 @@ class ComposerStaticInit62b2f88773cfd333ea63234ed7cacf3d
     );
 
     public static $classMap = array (
+        'AdminSeeder' => __DIR__ . '/../..' . '/database/seeds/AdminSeeder.php',
         'App\\Admin' => __DIR__ . '/../..' . '/app/Admin.php',
         'App\\Attribute' => __DIR__ . '/../..' . '/app/Attribute.php',
         'App\\AttributeSet' => __DIR__ . '/../..' . '/app/AttributeSet.php',
         'App\\BanglaConverter' => __DIR__ . '/../..' . '/app/BanglaConverter.php',
         'App\\Banner' => __DIR__ . '/../..' . '/app/Banner.php',
         'App\\Brand' => __DIR__ . '/../..' . '/app/Brand.php',
+        'App\\CanvasOption' => __DIR__ . '/../..' . '/app/CanvasOption.php',
         'App\\Cart' => __DIR__ . '/../..' . '/app/Cart.php',
         'App\\Category' => __DIR__ . '/../..' . '/app/Category.php',
         'App\\City' => __DIR__ . '/../..' . '/app/City.php',
@@ -684,6 +686,7 @@ class ComposerStaticInit62b2f88773cfd333ea63234ed7cacf3d
         'App\\Http\\Controllers\\Backend\\Vendor\\ShopController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/Vendor/ShopController.php',
         'App\\Http\\Controllers\\Backend\\Vendor\\VendorController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/Vendor/VendorController.php',
         'App\\Http\\Controllers\\Backend\\WpmenuController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/WpmenuController.php',
+        'App\\Http\\Controllers\\CanvasOptionController' => __DIR__ . '/../..' . '/app/Http/Controllers/CanvasOptionController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\CssController' => __DIR__ . '/../..' . '/app/Http/Controllers/CssController.php',
         'App\\Http\\Controllers\\Frontend\\ApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/ApiController.php',
@@ -735,6 +738,7 @@ class ComposerStaticInit62b2f88773cfd333ea63234ed7cacf3d
         'App\\Slider' => __DIR__ . '/../..' . '/app/Slider.php',
         'App\\Testimonial' => __DIR__ . '/../..' . '/app/Testimonial.php',
         'App\\TestimonialLeft' => __DIR__ . '/../..' . '/app/TestimonialLeft.php',
+        'App\\TmpOrder' => __DIR__ . '/../..' . '/app/TmpOrder.php',
         'App\\Transaction' => __DIR__ . '/../..' . '/app/Transaction.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\Vendor' => __DIR__ . '/../..' . '/app/Vendor.php',

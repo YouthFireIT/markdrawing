@@ -6,12 +6,14 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AdminSeeder' => $baseDir . '/database/seeds/AdminSeeder.php',
     'App\\Admin' => $baseDir . '/app/Admin.php',
     'App\\Attribute' => $baseDir . '/app/Attribute.php',
     'App\\AttributeSet' => $baseDir . '/app/AttributeSet.php',
     'App\\BanglaConverter' => $baseDir . '/app/BanglaConverter.php',
     'App\\Banner' => $baseDir . '/app/Banner.php',
     'App\\Brand' => $baseDir . '/app/Brand.php',
+    'App\\CanvasOption' => $baseDir . '/app/CanvasOption.php',
     'App\\Cart' => $baseDir . '/app/Cart.php',
     'App\\Category' => $baseDir . '/app/Category.php',
     'App\\City' => $baseDir . '/app/City.php',
@@ -74,6 +76,7 @@ return array(
     'App\\Http\\Controllers\\Backend\\Vendor\\ShopController' => $baseDir . '/app/Http/Controllers/Backend/Vendor/ShopController.php',
     'App\\Http\\Controllers\\Backend\\Vendor\\VendorController' => $baseDir . '/app/Http/Controllers/Backend/Vendor/VendorController.php',
     'App\\Http\\Controllers\\Backend\\WpmenuController' => $baseDir . '/app/Http/Controllers/Backend/WpmenuController.php',
+    'App\\Http\\Controllers\\CanvasOptionController' => $baseDir . '/app/Http/Controllers/CanvasOptionController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\CssController' => $baseDir . '/app/Http/Controllers/CssController.php',
     'App\\Http\\Controllers\\Frontend\\ApiController' => $baseDir . '/app/Http/Controllers/Frontend/ApiController.php',
@@ -125,6 +128,7 @@ return array(
     'App\\Slider' => $baseDir . '/app/Slider.php',
     'App\\Testimonial' => $baseDir . '/app/Testimonial.php',
     'App\\TestimonialLeft' => $baseDir . '/app/TestimonialLeft.php',
+    'App\\TmpOrder' => $baseDir . '/app/TmpOrder.php',
     'App\\Transaction' => $baseDir . '/app/Transaction.php',
     'App\\User' => $baseDir . '/app/User.php',
     'App\\Vendor' => $baseDir . '/app/Vendor.php',

@@ -7,9 +7,9 @@ use App\Category;
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/drug-drop-image-upload/image-uploader.css') }}">
 @endsection
 
-@section('save_button')
+{{-- @section('save_button')
     <a href="#" id="save_button">Add</a>
-@endsection
+@endsection --}}
 
 @section('content')
 
@@ -110,7 +110,7 @@ use App\Category;
                 var addButton = $('.add_button'); //Add button selector
                 var wrapper = $('.field_wrapper'); //Input field wrapper
                 var fieldHTML =
-                    '<div class="form-group col-md-8" style="padding-left: 0"><label>Add Attribute</label><input type="text" name="field_name[]" class="form-control" placeholder="Title" value="" /><br><textarea name="attribute_options[]" class="form-control" placeholder="Attribute option must need to separate by ," value=""></textarea><br><a href="javascript:void(0);" class="remove_button btn btn-warning">Remove</a></div>'; //New input field html 
+                    '<div class="form-group col-md-8" style="padding-left: 0"><label>Add Attribute</label><input type="text" name="field_name[]" class="form-control" placeholder="Title" value="" /><br><textarea name="attribute_options[]" class="form-control" placeholder="Attribute option must need to separate by ," value=""></textarea><br><a href="javascript:void(0);" class="remove_button btn btn-warning">Remove</a></div>'; //New input field html
                 var x = 1; //Initial field counter is 1
 
                 //Once add button is clicked
