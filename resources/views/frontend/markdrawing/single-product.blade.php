@@ -96,9 +96,11 @@
 							<label for="Programm">Where are you based? (MUST BE SELECTED):</label>
 							<select id="Programm" class="form-control">
 								<option value="1" selected="selected">Choose One</option>
-								<option value="2">United Kingdom GB</option>
-								<option value="3">USA US</option>
-								<option value="4">Australia AUS</option>
+								@forelse (App\City::all() as $item)
+								<option value="{{$item->id}}">{{$item->name}}</option>
+								@empty
+								
+								@endforelse
 							</select>
 						</div>
 
