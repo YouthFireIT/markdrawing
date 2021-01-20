@@ -140,9 +140,39 @@
 						</div>
 
 						<div class="form-group">
+							<label for="people">Canvas Options? (pick as many as you like): </label><br>
+
+							@forelse (App\Attribute::all() as $item)
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="checkbox" id="{{$item->id}}" value="{{$item->amount}}">
+								<label class="form-check-label" for="{{$item->id}}">{{$item->name}}</label>
+								</div>
+							@empty
+								
+							@endforelse
+							
+						 
+						</div>
+
+						<div class="form-group">
+							<label for="people">Add a print?: </label><br>
+							@forelse (App\Brand::all() as $item)
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="checkbox" id="{{$item->id}}" value="{{$item->amount}}">
+								<label class="form-check-label" for="{{$item->id}}">{{$item->name}}</label>
+								</div>
+							@empty
+								
+							@endforelse
+						</div>
+
+						<div class="form-group">
 							<label for="cmnt">Add any notes?</label>
 							<textarea id="cmnt" cols="30" rows="4" class="form-control"></textarea>
 						</div>
+
+
+
 						<div class="img-button">
 							<label for="img">Upload an image</label>
 							<br>
