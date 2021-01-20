@@ -264,14 +264,14 @@ $general = General::find(1);
                             </li>
 
                             <li class="nav-item ">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-brand" aria-controls="submenu-brand"><i class="fas fa-building"></i>Brand<span class="badge badge-success">6</span></a>
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-brand" aria-controls="submenu-brand"><i class="fas fa-building"></i>Canvas Print<span class="badge badge-success">6</span></a>
                                 <div id="submenu-brand" class="collapse submenu @if(Request::url() ==  route('admin.brand.create') or Request::url() ==  route('admin.brands')) show @endif" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{route('admin.brand.create')}}">Add New</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{route('admin.brands')}}">Brands</a>
+                                            <a class="nav-link" href="{{route('admin.brands')}}">Canvas Prints</a>
                                         </li>
                                         
                                     </ul>
