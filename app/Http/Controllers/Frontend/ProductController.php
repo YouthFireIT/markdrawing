@@ -53,7 +53,8 @@ class ProductController extends Controller
 
 
     public function index() {
-    	$products = Product::orderBy('id','desc')->paginate(4);
+        
+        $products = Product::orderBy('id','desc')->paginate(4); 
         
         if (!is_null($products)) {
             return view('frontend.pages.product.index',compact('products'));
@@ -81,23 +82,27 @@ class ProductController extends Controller
     }
 
     public function show($slug) {
+
+   
         $products = Product::orderBy('id','desc')->paginate(4);
     	$product = Product::where('slug',$slug)->first();
 
 
     	if (!is_null($product)) {
-    		return view('frontend.pages.product.show', compact('products','product'));
+    		return view('frontend.markdrawing.single-product', compact('products','product'));
     	}
     	else{
             return view('frontend.pages.product.noproduct');
         }
     }
 
+
+
     public function showen($slug) {
+
         $products = Product::orderBy('id','desc')->paginate(4);
         $product = Product::where('slug',$slug)->first();
-
-
+ 
         if (!is_null($product)) {
             return view('frontend.pages.product.showen', compact('products','product'));
         }

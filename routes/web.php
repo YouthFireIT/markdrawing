@@ -1,6 +1,10 @@
 <?php
 
 Route::get('/','Frontend\PagesController@index')->name('index');
+
+Route::get('/family-portait','Frontend\PagesController@familyPortait')->name('family.portait');
+Route::get('/portait','Frontend\PagesController@portait')->name('portait');
+
 //portfolio
 Route::get('/portfolio',function(){
   return view('frontend.pages.portfolio');
@@ -9,7 +13,10 @@ Route::get('/portfoliomain',function(){
   return view('frontend.pages.portfoliomain');
 });
 
-//Route::view('/test','frontend.markdrawing.index');
+Route::get('/product/{slug}','Frontend\ProductController@show')->name('product.show');
+
+
+Route::view('/test','frontend.markdrawing.portait');
 
 
 //// Temp order Store ////
@@ -18,7 +25,9 @@ Route::get('/temp/order/store','Frontend\CartsController@temp_order_store');
 
 //endportfolio
 Route::get('/products','Frontend\ProductController@index')->name('products');
+
 Route::get('/product/{slug}','Frontend\ProductController@show')->name('product.show');
+
 Route::post('/otp/activation','Userprofile\MyaccountsController@otpactivation')->name('otp.active');
 Route::get('product/subcategoryAll/{subcategoryId}','Frontend\ProductController@showBySubcategory');
 Route::get('product/categoryAll/{categoryId}','Frontend\ProductController@showByCategory');

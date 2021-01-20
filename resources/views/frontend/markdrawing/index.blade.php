@@ -8,14 +8,14 @@
 				<div class="col-lg-8 p-0 col-md-12">
 					<div class="banner_left">
 						<h1 class="banner_head">
-							<span class="bhead_keyword">Portraits</span>
-							 from your photos
+							<span class="bhead_keyword">Representations</span>
+                             from your photographs
 						</h1>
 						<p class="">
-							The only place to get your Portraits drawn from your photos. Charlie and he’s team take your favourite photos of your favourite people and turn them into fantastic portraits. Not only are our portraits amazingly stunning, they are very cost effective with prices from just £17.50. 
+							One of the most excellent things approximately requesting a picture from Mark drawings is the ease of it all. You'll be able take a photo off your phone or camera and transfer it at that point arrange on our site, yes it’s truly that easy.
 						</p>
 						<p class="">
-							One of the best things about ordering a picture from Charlie’s drawings is the ease of it all. You can take a photo off your phone or camera and upload it then order on our website, yes its really that easy.
+							As it were put to urge your representations drawn from your photographs. Mark and he's group take your favorite photographs of your top choice individuals and turn them into incredible representations. Not as it were are our representations incredibly shocking, they are too fetched successful with costs from fair 17usd.
 						</p>
 					</div>
 				</div>
@@ -29,46 +29,46 @@
     </section>
     
 	<!-- drawing moment part -->
-	<section id="drawing_moment">
-		<div class="container">
-			<div class="row justify-content-center">
-				<span class="section_heading pb-5">
-					Get your Charlies Drawings moment
-				</span>
+		{{-- <section id="drawing_moment">
+			<div class="container">
+				<div class="row justify-content-center">
+					<span class="section_heading pb-5">
+						Get your markdrawing moment
+					</span>
+				</div>
+				<div class="row">
+					<div class="col-lg-6">
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/83IpYS6Bgk8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+					<div class="col-lg-6">
+						<p class="dm_text">
+							One of the most unique reasons to get a portrait from your photos with Charlie’s drawings in connecting people who did not get the chance to meet in person. Taking separate photos of people who never got the chance to meet and drawing them into a beautiful portrait is just the perfect way to create an emotional one off gift.
+						</p>
+						<p class="dm_text">
+							Photos can be from separate occasions and even eras. So if it’s an emotional Grandparent / Grandchild portrait or yourself with a much missed family member.
+						</p>
+					</div>
+				</div>
+				<div class="row pt-5">
+					<div class="col-lg-4">
+						<img src="images/dm1.png" alt="" class="img-fluid">
+					</div>
+					<div class="col-lg-4">
+						<img src="images/dm2.png" alt="" class="img-fluid">
+					</div>
+					<div class="col-lg-4">
+						<img src="images/dm3.jpg" alt="" class="img-fluid">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-auto">
+						<p class="dm_text text-center padding_c">
+							Family portraits are also another great gift for everyone, even the people who are incredibly hard to buy for. The thought of getting the whole family together for long enough to get a portrait drawn brings shivers down most peoples spines. The great thing about our portraits is they can be drawn from separate photos and all done with a click of a button. All you need is a nice snapshot of everyone and we do the rest of the work.
+						</p>
+					</div>
+				</div>
 			</div>
-			<div class="row">
-				<div class="col-lg-6">
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/83IpYS6Bgk8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-				</div>
-				<div class="col-lg-6">
-					<p class="dm_text">
-						One of the most unique reasons to get a portrait from your photos with Charlie’s drawings in connecting people who did not get the chance to meet in person. Taking separate photos of people who never got the chance to meet and drawing them into a beautiful portrait is just the perfect way to create an emotional one off gift.
-					</p>
-					<p class="dm_text">
-						Photos can be from separate occasions and even eras. So if it’s an emotional Grandparent / Grandchild portrait or yourself with a much missed family member.
-					</p>
-				</div>
-			</div>
-			<div class="row pt-5">
-				<div class="col-lg-4">
-					<img src="images/dm1.png" alt="" class="img-fluid">
-				</div>
-				<div class="col-lg-4">
-					<img src="images/dm2.png" alt="" class="img-fluid">
-				</div>
-				<div class="col-lg-4">
-					<img src="images/dm3.jpg" alt="" class="img-fluid">
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-auto">
-					<p class="dm_text text-center padding_c">
-						Family portraits are also another great gift for everyone, even the people who are incredibly hard to buy for. The thought of getting the whole family together for long enough to get a portrait drawn brings shivers down most peoples spines. The great thing about our portraits is they can be drawn from separate photos and all done with a click of a button. All you need is a nice snapshot of everyone and we do the rest of the work.
-					</p>
-				</div>
-			</div>
-		</div>
-    </section>
+		</section> --}}
     
 	<!-- Featured Collections -->
 	<section id="Featured_Collections" class="Featured_Collections">
@@ -80,10 +80,10 @@
 			</div>
 			<div class="row">
                  
-
+		
             @forelse ($feature_products as $item)
                 <div class="col-lg-3 py-3">
-                    <a href="#" class="fc_link_item">
+                    <a href="{{route('product.show',$item->slug)}}" class="fc_link_item">
                         <div class="fc_item_wrap">
 													<?php 
 														$image = App\ProductImage::where('product_id', $item->id)->first();	
@@ -106,40 +106,39 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<span class="section_heading pb-5">
-					How to order your portrait
+					Making an order for your portrait
 				</span>
 			</div>
 			<div class="row justify-content-end">
 				<div class="op_content_1">
-					<h2 class="op_heading">Choose your ideal photos</h2>
-					<p class="">When choosing the ideal photos you should consider a few things, the main things is that you can see facial details clearly. Now these don’t need to be professional quality because who has that, most smartphones have a pretty outstanding camera today so phone pictures are great.</p>
-					<p class="">If you have any old photos floating around in draws and you want to use them, then instead of sending them in by post just take a photo of your old photo. This will usually allow us to use your much-loved treasured photo without risking it with royal mail.</p>
+					<h2 class="op_heading">Select your perfect photos</h2>
+					<p class="">When choosing the perfect photographs you ought to consider some things, the most things is merely can see facial subtle elements clearly. Presently these don’t got to be proficient quality since who has that, most smartphones have a pretty exceptional camera nowadays so phone pictures are great. If you have got any ancient photographs coasting around in draws and you need to utilize them, at that point rather than sending them in by post fair take a photo of your ancient photo. This will as a rule permit us to utilize your much-loved cherished photo without gambling it with regal mail.</p>
 				</div>
 			</div>
 			<div class="row justify-content-start">
 				<div class="op_content_2">
-					<h2 class="op_heading">Choose your style</h2>
-					<p class="">The next most important thing is to choose your portrait style, here at Charlie’s Drawings we offer some amazing styles that can choose from.</p>
-					<p class=""><strong>Black & White portrait pencil </strong></p>
-					<p class="">This style is perfect for nice simple family portraits; this style is drawn in pencil by hand, cleaned up on pc then sent on either high quality print & canvas. This style can be used for pictures of people who never met and can be made up from separate photos. This style takes on average two weeks to complete, you will get a preview sent through to your email, which you can approve to get your picture on its way. </p>
-					<p class=""><strong>Black & White Portrait detailed</strong></p>
-					<p class="">This style is great for people who want a life like family portrait; this style is drawn on a drawing tablet, which is connected, to a high power pc. This allows us to keep the quality high and as life like as can be. Also edits are a lot easier to be made in this style as it’s not a case of a complete redraw. This style takes 2 weeks to complete and like all our styles you will get an email preview.</p>
-					<p class=""><strong>Colour Portrait Digital</strong></p>
-					<p class="">This Colour Portrait digital style works perfectly from your photos. In fact this has been one of the best sellers last year. This style is created with a drawing tablet connected to a high power pc. This portrait is then carefully drawn to give an amazing result, like all our styles in takes approx. 2 weeks to be completed. Look out for our email preview, which will be in your inbox.</p>
-					<p><strong>Colour Pencil Portrait</strong></p>
-					<p class="">Colour Pencil Portrait is such an amazing style to choose, this is hand sketched and coloured in pencil to give you an outstanding finish. These take a day or two longer than the others due to the amount of work put in by our team.</p>
+					<h2 class="op_heading">Select your style </h2>
+					<p class="">The following most vital thing is to select your representation fashion, here at Mark Drawings we offer a few astounding styles that can select from. Black & White representation pencil This fashion is idealize for decent basic family representations; this fashion is drawn in pencil by hand, cleaned up on pc at that point sent on either tall quality print & canvas. This fashion can be utilized for pictures of individuals who never met and can be made up from partitioned photographs. This fashion takes on normal two weeks to total, you may get a see sent through to your email, which you'll be able endorse to induce your picture on its way.</p>
+					<p class=""><strong>Dark & White Representation detailed </strong></p>
+					<p class="">This fashion is incredible for individuals who need a life like family representation; this fashion is drawn on a drawing tablet, which is associated, to a tall control pc. This permits us to keep the quality tall and as life like as can be. Too alters are a part simpler to be made in this fashion as it’s not a case of a total redraw. This fashion takes 2 weeks to total and like all our styles you'll get an e-mail preview.  </p>
+					<p class=""><strong>Colour Representation Digital </strong></p>
+					<p class="">This Colour Representation computerized fashion works flawlessly from your photographs. In truth this has been one of the most excellent venders final year. This fashion is made with a drawing tablet associated to a tall control pc. This representation is at that point carefully drawn to deliver an astounding result, like all our styles in takes approx. 2 weeks to be completed. See out for our mail see, which can be in your inbox.</p>
+					<p class=""><strong>Colour Pencil Portrait </strong></p>
+					<p class="">Colour Pencil Representation is such an astounding fashion to select, typically hand portrayed and coloured in pencil to allow you an extraordinary wrap up. These take a day or two longer than the others due to the sum of work put in by our group</p>
+				 
 				</div>
 			</div>
 			<div class="row justify-content-end">
 				<div class="op_content_3">
-					<h2 class="op_heading">Order online</h2>
-					<p>The best and easiest thing about Charlie’s Drawings is the ease of ordering. Our fully secure website can take card payments along with your required photos to make the process incredibly stress free. Any questions or problems we have a highly skilled team monitoring our emails and messages 24/7 so just get in touch with us.</p>
-					<p><strong>How much will my portraits from photos cost?</strong></p>
-					<p>So you’re probably thinking with the amount of work being put in and the customer service we offer than your portrait will cost the earth? No not at all, our prices start from just £15 per person. All black and white styles cost just £15 per person, whilst colour digital is just £16 per person; Colour pencil portrait is £20 per person.</p>
-					<p><strong>What happens if I don’t like my Portrait?</strong></p>
-					<p>The thing about art is that it is very subjective, especially when it’s a drawing of your loved ones, as lets face it you know them a lot better than us. So what we offer is step by step support until your happy with your drawing. With the amount of work that goes into each drawing plus the constant support we do have a no refund policy, as there is simply no need.</p>
+					<h2 class="op_heading">Arrange online </h2>
+					<p>The best and most effortless thing around Mark Drawings is the ease of requesting. Our completely secure site can take card installments at the side your required photographs to create the method inconceivably stretch free. Any questions or issues we have a exceedingly talented group observing our emails and messages 24/7 so fair get in touch with us.</p>
+					<p><strong>How much will my representations from photographs cost? </strong></p>
+					<p>So you’re likely considering with the sum of work being put in and the client benefit we offer than your representation will fetched the soil? No not at all, our costs begin from fair £15 per individual. All dark and white styles taken a toll fair £15 per individual, while colour computerized is fair £16 per individual; Colour pencil representation is £20 per person. </p>
+					<p><strong> What happens in the event that I don’t like my Portrait? </strong></p>
+					<p>The thing almost craftsmanship is that it is exceptionally subjective, particularly when it’s a drawing of your adored ones, as lets confront it you know them a parcel superior than us. So what we offer is step by step bolster until your upbeat together with your drawing. With the sum of work that goes into each drawing furthermore the consistent back we do have a no discount approach, as there's basically no require.</p>
 				</div>
-			</div>
+            </div>
+            
 			<div class="row justify-content-center pt-5">
 				<span class="section_heading">
 					What Our Clients Say
@@ -181,5 +180,6 @@
 				</div>
 			</div>
 		</div>
-    </section>
+	</section>
+	
 @endsection

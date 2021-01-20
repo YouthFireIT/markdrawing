@@ -105,7 +105,7 @@
             <hr class="hr_line">
             <div class="row justify-content-center">
                 <p class=" py-1 font-weight-bold fo_te">
-                    © 2021, <a href="index.html" class="text-decoration-none">CHARLIESDRAWINGS</a>
+                    © 2021, <a href="index.html" class="text-decoration-none">Markdrawing</a>
                 </p>
             </div>
         </div>
