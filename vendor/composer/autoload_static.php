@@ -616,12 +616,14 @@ class ComposerStaticInit62b2f88773cfd333ea63234ed7cacf3d
     );
 
     public static $classMap = array (
+        'AdminSeeder' => __DIR__ . '/../..' . '/database/seeds/AdminSeeder.php',
         'App\\Admin' => __DIR__ . '/../..' . '/app/Admin.php',
         'App\\Attribute' => __DIR__ . '/../..' . '/app/Attribute.php',
         'App\\AttributeSet' => __DIR__ . '/../..' . '/app/AttributeSet.php',
         'App\\BanglaConverter' => __DIR__ . '/../..' . '/app/BanglaConverter.php',
         'App\\Banner' => __DIR__ . '/../..' . '/app/Banner.php',
         'App\\Brand' => __DIR__ . '/../..' . '/app/Brand.php',
+        'App\\CanvasOption' => __DIR__ . '/../..' . '/app/CanvasOption.php',
         'App\\Cart' => __DIR__ . '/../..' . '/app/Cart.php',
         'App\\CartImage' => __DIR__ . '/../..' . '/app/CartImage.php',
         'App\\Category' => __DIR__ . '/../..' . '/app/Category.php',
@@ -685,6 +687,7 @@ class ComposerStaticInit62b2f88773cfd333ea63234ed7cacf3d
         'App\\Http\\Controllers\\Backend\\Vendor\\ShopController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/Vendor/ShopController.php',
         'App\\Http\\Controllers\\Backend\\Vendor\\VendorController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/Vendor/VendorController.php',
         'App\\Http\\Controllers\\Backend\\WpmenuController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/WpmenuController.php',
+        'App\\Http\\Controllers\\CanvasOptionController' => __DIR__ . '/../..' . '/app/Http/Controllers/CanvasOptionController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\CssController' => __DIR__ . '/../..' . '/app/Http/Controllers/CssController.php',
         'App\\Http\\Controllers\\Frontend\\ApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/ApiController.php',

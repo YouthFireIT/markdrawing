@@ -166,7 +166,7 @@ Route::group(['prefix'=> 'admin'], function() {
 
 	//brand routes
 
-	Route::group(['prefix'=> 'brands'], function() {
+	Route::group(['prefix'=> 'canvasprint'], function() {
 		Route::get('/','Backend\BrandController@manage')->name('admin.brands');
 		Route::get('/create','Backend\BrandController@create')->name('admin.brand.create');
 		Route::get('/edit/{id}','Backend\BrandController@edit')->name('admin.brand.edit');
@@ -308,7 +308,7 @@ Route::group(['prefix'=> 'admin'], function() {
 	});
 
 
-	Route::group(['prefix'=> 'attributes'], function() {
+	Route::group(['prefix'=> 'canvasOption'], function() {
 		Route::get('/','Backend\AttributeController@manage')->name('admin.attributes');
 		Route::get('/create','Backend\AttributeController@create')->name('admin.attribute.create');
 		Route::get('/edit/{id}','Backend\AttributeController@edit')->name('admin.attribute.edit');

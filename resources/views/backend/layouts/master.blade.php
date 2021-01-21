@@ -4,7 +4,7 @@ $general = General::find(1);
 @endphp
 <!doctype html>
 <html lang="en">
- 
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -28,7 +28,7 @@ $general = General::find(1);
 </head>
 
 <body>
-    
+
     <!-- ============================================================== -->
     <!-- main wrapper -->
     <!-- ============================================================== -->
@@ -165,9 +165,9 @@ $general = General::find(1);
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('admin.index') }}"><i class="fa fa-fw fa-rocket"></i>Dashboard</a>
-                                
+
                             </li>
-                            
+
 
                             <li class="nav-item ">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-orders" aria-controls="submenu-orders"><i class="fas fa-shopping-cart"></i>Orders<span class="badge badge-success">6</span></a>
@@ -175,17 +175,17 @@ $general = General::find(1);
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{ route('admin.orders') }}"><i class="fas fa-shopping-cart"></i>Orders</a>
-                                            
+
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{ route('admin.payments') }}"><i class="fas fa-dollar-sign"></i>Payments</a>
-                                            
+
                                         </li>
                                         </ul>
                                 </div>
-                                
+
                             </li>
-                            
+
                             <li class="nav-item ">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fas fa-tags"></i>Product<span class="badge badge-success">6</span></a>
                                 <div id="submenu-1" class="collapse submenu @if(Request::url() ==  route('admin.product.create') or Request::url() ==  route('admin.products') or Request::url() ==  route('admin.reviews') or Request::url() ==  route('admin.city.create') or Request::url() ==  route('admin.cities') or Request::url() ==  route('admin.shipping.edit', 1)) show @endif" style="">
@@ -200,22 +200,39 @@ $general = General::find(1);
                                             <a class="nav-link" href="{{ route('admin.reviews') }}">Reviews</a>
                                         </li>
 
+<<<<<<< HEAD
                                        
 
 
 
                             
+=======
+                                        <li class="nav-item ">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-city" aria-controls="submenu-city"><i class="fa fa-th-large"></i>City<span class="badge badge-success">6</span></a>
+                                <div id="submenu-city" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{route('admin.city.create')}}">Add New</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{route('admin.cities')}}">Cities</a>
+                                        </li>
 
-                            
+                                    </ul>
+                                </div>
+                            </li>
+>>>>>>> 00f7ed4a55c598464a5c3af6f66977a4bc41ccb2
+
+
 
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('admin.shipping.edit', 1) }}"><i class="fas fa-truck"></i>Shipping</a>
-                                
+
                             </li>
-                                
+
                                     </li>
-                                        
-                                        
+
+
                                     </ul>
                                 </div>
                             </li>
@@ -230,7 +247,7 @@ $general = General::find(1);
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{route('admin.categories')}}">Categories</a>
                                         </li>
-                                        
+
                                     </ul>
                                 </div>
                             </li>
@@ -245,13 +262,13 @@ $general = General::find(1);
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{route('admin.offers')}}">Offers</a>
                                         </li>
-                                        
+
                                     </ul>
                                 </div>
                             </li>
 
                             <li class="nav-item ">
-                            <a class="nav-link" href="{{route('admin.marketing.index')}}"><i class="fa fa-wifi"></i>Marketing</a>    
+                            <a class="nav-link" href="{{route('admin.marketing.index')}}"><i class="fa fa-wifi"></i>Marketing</a>
                             </li>
 
                             <li class="nav-item ">
@@ -264,7 +281,7 @@ $general = General::find(1);
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{route('admin.brands')}}">Canvas Prints</a>
                                         </li>
-                                        
+
                                     </ul>
                                 </div>
                             </li>
@@ -278,7 +295,7 @@ $general = General::find(1);
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{route('admin.attributes')}}">Canvas Options</a>
-                                        </li>                                        
+                                        </li>
                                     </ul>
                                 </div>
                             </li>
@@ -305,7 +322,7 @@ $general = General::find(1);
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{route('admin.menu.wpmenu')}}">Menus</a>
-                                            
+
                                         </li>
 
                                         <li class="nav-item">
@@ -333,13 +350,13 @@ $general = General::find(1);
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{route('admin.general.font.edit')}}" >Fonts</a>
                                         </li>
-                                        
+
                                     </ul>
                                 </div>
                             </li>
 
 
-                            
+
 
                             {{-- <li class="nav-item ">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-city" aria-controls="submenu-city"><i class="fa fa-th-large"></i>City<span class="badge badge-success">6</span></a>
@@ -351,18 +368,18 @@ $general = General::find(1);
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{route('admin.cities')}}">Cities</a>
                                         </li>
-                                        
+
                                     </ul>
                                 </div>
                             </li>
 
-                            
+
 
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('admin.shipping.edit', 1) }}"><i class="fas fa-truck"></i>Shipping</a>
-                                
+
                             </li> --}}
-                            
+
                         </ul>
                     </div>
                 </nav>
@@ -405,6 +422,11 @@ $general = General::find(1);
                     </div>
                 </div>
             </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end wrapper  -->
+        <!-- ============================================================== -->
+
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
@@ -412,7 +434,7 @@ $general = General::find(1);
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            
+
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="text-md-right footer-links d-none d-sm-block">
@@ -427,10 +449,6 @@ $general = General::find(1);
             <!-- ============================================================== -->
             <!-- end footer -->
             <!-- ============================================================== -->
-        </div>
-        <!-- ============================================================== -->
-        <!-- end wrapper  -->
-        <!-- ============================================================== -->
     </div>
     <!-- ============================================================== -->
     <!-- end main wrapper  -->
@@ -463,20 +481,20 @@ $general = General::find(1);
         $('.content-preloader').preloader({
 
           // loading text
-          text: '', 
+          text: '',
 
-          // from 0 to 100 
-          percent: '', 
+          // from 0 to 100
+          percent: '',
 
           // duration in ms
-          duration: '700', 
+          duration: '700',
 
           // z-index property
-          zIndex: '', 
+          zIndex: '',
 
           // sets relative position to preloader's parent
-          setRelative: false 
-          
+          setRelative: false
+
         });
     </script>
 
@@ -484,7 +502,7 @@ $general = General::find(1);
         .preloader {
         opacity: 1;
         }
-        
+
     </style>
 
     @yield('script')

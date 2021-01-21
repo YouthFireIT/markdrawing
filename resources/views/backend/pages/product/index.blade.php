@@ -9,10 +9,11 @@
     <div class="row">
 
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-            <a href="{{ route('admin.product.create') }}" class="btn btn-primary float-right mr-3">Add New</a>
             <div class="card">
-                <h5 class="card-header">Manage Product</h5>
-
+                <div class="card-header">
+                    <a href="{{ route('admin.product.create') }}" class="btn btn-primary float-right mr-3">Add New</a>
+                    <h5>Manage Product</h5>
+                </div>
                 <div class="card-body">
                     @include('backend.layouts.error')
 
