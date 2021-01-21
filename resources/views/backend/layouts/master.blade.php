@@ -200,20 +200,11 @@ $general = General::find(1);
                                             <a class="nav-link" href="{{ route('admin.reviews') }}">Reviews</a>
                                         </li>
 
-                                        <li class="nav-item ">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-city" aria-controls="submenu-city"><i class="fa fa-th-large"></i>City<span class="badge badge-success">6</span></a>
-                                <div id="submenu-city" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{route('admin.city.create')}}">Add New</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{route('admin.cities')}}">Cities</a>
-                                        </li>
-                                        
-                                    </ul>
-                                </div>
-                            </li>
+                                       
+
+
+
+                            
 
                             
 
@@ -292,7 +283,20 @@ $general = General::find(1);
                                 </div>
                             </li>
 
-                            
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-city" aria-controls="submenu-city"><i class="fa fa-th-large"></i>Country<span class="badge badge-success">6</span></a>
+                                <div id="submenu-city" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{route('admin.city.create')}}">Add New</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{route('admin.cities')}}">Countries</a>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </li>
 
 
                             <li class="nav-item ">

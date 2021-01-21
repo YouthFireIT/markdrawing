@@ -644,7 +644,7 @@ $carts = Session::get('product');
 
             // $('#payment_forms').hide();
 
-          });
+        });
 
 
       $('#submitform').hide();

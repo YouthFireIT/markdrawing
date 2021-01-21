@@ -1,6 +1,10 @@
 @extends('frontend.layouts.master.app')
 
 @section('content')
+
+	@if(Session::has('message'))
+	<div class="text-primary float-right">{{ Session::get('message') }}</div>
+	@endif
     <!-- banner part -->
 	<section id="banner_part">
 		<div class="conatiner">

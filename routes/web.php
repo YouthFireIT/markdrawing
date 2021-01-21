@@ -484,7 +484,8 @@ Route::post('/cancel', 'SslCommerzPaymentController@cancel');
 Route::post('/ipn', 'SslCommerzPaymentController@ipn');
 //SSLCOMMERZ END
 
-
+////// Cart /////
+Route::post('/cart', 'Frontend\CartsController@store')->name('cart.insert');
 
 // AAMARPAY  Start
 Route::post('/amarpay/getway/payment', 'Frontend\OrdersController@amarpayGetwayPayment')->name('amarpay.getway.payment');

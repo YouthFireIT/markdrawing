@@ -12,114 +12,107 @@ use Auth;
 use Session;
 use App\TmpOrder;
 use App\Offer;
+use App\CartImage;
+use App\Attribute;
+use App\Brand;
+use App\City;
  
 
 class CartsController extends Controller
 {
 	public function index()
 	{
-	   // dd(Session::get('product'));
-		return view('frontend.pages.product.cart');
+		return view('frontend.markdrawing.cart');
 	}
 
-
     public function store(Request $request)
-    {
-        // dd($request->quantity);
+    {   
+        // dd($request->canvasOption);      
     	$request->validate([
     		'product_id' => 'required',   		
     	]);
     	
-    // 	$product = Product::find($request->product_id);
-    	
-    	
+    // 	image save ////
+        $image = $request->file('file');
+        $date = date('Ymd_His');
+        $imageName = $date.'_'.$image->getClientOriginalName();
+        $imagePath = public_path('cartImages/');
+        $image->move($imagePath.$imageName);
+        $img = new CartImage;
+        $img->name = $imageName;
+        $img->save();
 
-    	if (Auth::check()) {
-    		
+        // if(!empty($request->canvasOption)){
+        //     $canvasOption = Attribute::find($request->canvasOption);
+        //     $canvasOptionAmount = $canvasOption->amount;
+        //     $canvasOptionName = $canvasOption->name;
+        // } else {
+        //     $canvasOptionAmount = 0;
+        //     $canvasOptionName = 0;
+        // }
+
+        // if(!empty($request->canvasPrint)){
+        //     $canvasPrint = Brand::find($request->canvasPrint);
+        //     $canvasPrintAmount = $canvasPrint->amount;
+        //     $canvasPrintName = $canvasPrint->name;
+        // } else {
+        //     $canvasPrintAmount = 0;
+        //     $canvasPrintName = 0;
+        // }
+
+        if(!empty($request->country)){
+            $country = City::find($request->country);
+            $countryName = $country->name;
+        } else {
+            $countryName = 0;
+        }
+
+        // $product = Product::find($request->product_id);
+        // $price = ($product->price*$request->person) + $canvasOptionAmount + $canvasPrintAmount;
+        // $productPrice = $product->price + $canvasOptionAmount + $canvasPrintAmount;	
+
+    	if (Auth::check()) {    		
             $request->session()->push('product.id', $request->product_id);
-            $request->session()->push('product.originalQty', $request->quantity);
-            $request->session()->push('product.quantity', $request->qtybutton);
-            $request->session()->push('product.user_id', Auth::user()->id);
-            $product = Product::find($request->product_id);
-            // var_dump($product->price); exit();
-            if (!is_null($product)) {
-                if ($product->is_add_to_offer == 1) {
-                    // dd($product->offer_price);
-                    $offer = Offer::find($product->offer_id);
-                    $rate = $offer->rate;
-                    $subStringedRate = substr($rate, 0, strpos($rate, "%"));
-                    $disPrice = ($product->price*$request->qtybutton*$subStringedRate)/100;
-                    $price = $product->price - $disPrice;
-                    
-                    // $request->session()->push('product.offer', $subStringedRate);
-                    $request->session()->push('product.disPrice', $disPrice);
-                    $request->session()->push('product.price', $price);
-                    $request->session()->push('product.mainprice', $product->offer_price);
-                }else {
-                    // dd($product->price);
-                     $price = $product->price*$request->qtybutton;
-                     $request->session()->push('product.disPrice', "0");
-                     $request->session()->push('product.price', $price);
-                     $request->session()->push('product.mainprice', $product->price);
-                }
-                
-            }else {
-                session()->flash('success',"We couldn't find this product.");
-                return back();
+            $request->session()->push('product.person', $request->person);
+            $request->session()->push('product.quantity', 1);
+            $request->session()->push('product.country', $countryName);
+            
+            if(!empty($request->canvasOption)){
+                $request->session()->push('product.canvasOption', $request->canvasOption);
+            } else {
+                $request->session()->push('product.canvasOption', "0");
             }
 
-            if ($request->attribute_options) {
-                $attribute_options = serialize($request->attribute_options);
-                $request->session()->push('product.attribute_options', $attribute_options);
+            if(!empty($request->canvasPrint)){
+                $request->session()->push('product.canvasPrint', $request->canvasPrint);
+            } else {
+                $request->session()->push('product.canvasPrint', "0");
             }
-			
-
-    	}
-    	else{
-
+                        
+            $request->session()->push('product.notes', $request->notes);
+            $request->session()->push('product.image', $imageName);
+            $request->session()->push('product.user_id', Auth::user()->id);            
+            // $request->session()->push('product.price', $price);
+            // $request->session()->push('product.productPrice', $productPrice);
+    	} else{
             $request->session()->push('product.id', $request->product_id);
-            $request->session()->push('product.originalQty', $request->quantity);
-            $request->session()->push('product.quantity', $request->qtybutton);
-            $product = Product::find($request->product_id);
-            // var_dump($product->price); exit();
-            if (!is_null($product)) {
-                if ($product->is_add_to_offer == 1) {
-                    $offer = Offer::find($product->offer_id);
-                    $rate = $offer->rate;
-                    $subStringedRate = substr($rate, 0, strpos($rate, "%"));
-                    $disPrice = ($product->price*$request->qtybutton*$subStringedRate)/100;
-                    $price = $product->price - $disPrice;
-                    
-                    // $request->session()->push('product.offer', $subStringedRate);
-                    $request->session()->push('product.disPrice', $disPrice);
-                    $request->session()->push('product.price', $price);
-                    $request->session()->push('product.mainprice', $product->offer_price);
-                }else {
-                     $price = $product->price*$request->qtybutton;
-                     $request->session()->push('product.disPrice', "0");
-                     $request->session()->push('product.price', $price);
-                     $request->session()->push('product.mainprice', $product->price);
-                }
-                
-            }else {
-                session()->flash('success',"We couldn't find this product.");
-                return back();
-            }
-
-            if ($request->attribute_options) {
-                $attribute_options = serialize($request->attribute_options);
-                $request->session()->push('product.attribute_options', $attribute_options);
-            }else {
-                $request->session()->push('product.attribute_options', Null);
-            }
-			
-		 
-    	}
-
-
-        return back();
-
-
+            $request->session()->push('product.person', $request->person);
+            $request->session()->push('product.quantity', 1);
+            $request->session()->push('product.country', $countryName);
+            $request->session()->push('product.canvasOption', $request->canvasOption);
+            $request->session()->push('product.canvasPrint', $request->canvasPrint);
+            $request->session()->push('product.notes', $request->notes);
+            $request->session()->push('product.image', $imageName);
+            // $request->session()->push('product.price', $price);
+            // $request->session()->push('product.productPrice', $productPrice);
+        }
+        
+        $count = 1;
+        if(Session::has('cartCount')){
+            $count = Session::get('cartCount') + 1;
+        }
+        Session::put('cartCount', $count);
+        return redirect()->route('index')->with('message', 'Product is added to cart successfully');
     }
 
 
@@ -317,93 +310,36 @@ class CartsController extends Controller
 
 
     public function delete(Request $request, $id)
-    {
-        
-        
-        $carts = Session::get('product');
-        
+    {    
+        $carts = Session::get('product');        
         unset($carts['id'][$id]);
-        unset($carts['originalQty'][$id]);
+        unset($carts['person'][$id]);
         unset($carts['quantity'][$id]);
-        unset($carts['disPrice'][$id]);
-        unset($carts['price'][$id]); 
-        // if($carts['offer'][$id]){
-        //     unset($carts['offer'][$id]);
-        //     unset($carts['disPrice'][$id]);
-        // }
-        
-        unset($carts['mainprice'][$id]);
-        unset($carts['attribute_options'][$id]);
+        unset($carts['country'][$id]);
+        unset($carts['canvasOption'][$id]);
+        unset($carts['canvasPrint'][$id]); 
+        unset($carts['notes'][$id]);
+        unset($carts['image'][$id]);
+
         Session::put('product', $carts);
         $update = Session::get('product');
-        // dd(count($update['id']));
-        // dd($update['id'][0]);
         Session::forget('product');
-        
-        // dd($carts);
-        
-        $tmp = count($update['id']);
-        // dd($tmp);
-        
-        for($i=0; $i<=$tmp; $i++){
+
+        for($i=0; $i<=count($update['id']); $i++){
             if($i != $id){
-            // dd($update['id'][$i+2]);
                 $request->session()->push('product.id', $update['id'][$i]);
-                $request->session()->push('product.originalQty', $update['originalQty'][$i]);
+                $request->session()->push('product.person', $update['person'][$i]);
                 $request->session()->push('product.quantity', $update['quantity'][$i]);
-                // if($update['offer'][$i]){
-                //     $request->session()->push('product.offer', $update['offer'][$i]);
-                //     $request->session()->push('product.disPrice', $update['disPrice'][$i]);
-                // } 
-                $request->session()->push('product.disPrice', $update['disPrice'][$i]);
-                $request->session()->push('product.price', $update['price'][$i]);
-                
-                // $product = Product::find($request->product_id);
-                $request->session()->push('product.mainprice', $update['mainprice'][$i]);
-                
-                // $tmp--;
-            }
-            
-            
+                $request->session()->push('product.country', $update['country'][$i]);
+                $request->session()->push('product.canvasOption', $update['canvasOption'][$i]);
+                $request->session()->push('product.canvasPrint', $update['canvasPrint'][$i]);
+                $request->session()->push('product.notes', $update['notes'][$i]);
+                $request->session()->push('product.image', $update['image'][$i]);
+            }            
         }
-        
-        // dd(Session::get('product'));
-        
-        
-        // $newCarts = array();
-        // foreach($update as $up){
-            
-        //     array_push($newCarts, $up);
-        // }
-        // dd($newCarts);
-        // dd($carts['price'][$id]);
-        // unset($carts['id'][$id]);
-        
-        // $update = Session::get('product');
-        // dd($update['id'][$id]);
-        // unset($carts->item[$id]);
-        // if(($key = array_search($id, $carts)) !== false) {
-        //     unset($carts[$key]);
-        // }
-        
-        // $_SESSION["cart"] = array_values($items);
-        
-        
-            // $carts = Session::get('product');
-            // // unset($carts[$id]);
-            //     unset($carts['id'][$id]);
-            //     unset($carts['quantity'][$id]);
-            //     unset($carts['price'][$id]);
-            //     unset($carts['attribute_options'][$id]);
-            //     Session::put('product', $carts);
-                
-            //     if($id == 0){
-            //         Session::forget('product');
-            //     }
-            
+        $cartCount = Session::get('cartCount');
+        Session::put('cartCount', $cartCount-1);           
         return back();        
     }
-
-
 
 }

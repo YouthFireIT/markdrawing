@@ -74,7 +74,7 @@
 					</div>
 
 					<div class="detail-amount">
-						<h3>$ {{$product->price}}</h3>
+						<h3 id="price">$ {{$product->price}}</h3>
 					</div>
 
 					<p><u>Shipping</u> calculated at checkout.</p>
@@ -91,10 +91,13 @@
 						</ul>
 					</div>
 
-					<form>
+					<form method="post" enctype="multipart/form-data" action="{{ route('cart.insert') }}">
+						@csrf
+						{{-- <input type="hidden" name="price" value="{{ $product->price }}" id="hiddenPrice"> --}}
+						<input type="hidden" name="product_id" value="{{ $product->id }}">
 						<div class="form-group">
 							<label for="Programm">Where are you based? (MUST BE SELECTED):</label>
-							<select id="Programm" class="form-control">
+							<select id="Programm" class="form-control" name="country">
 								<option value="1" selected="selected">Choose One</option>
 								@forelse (App\City::all() as $item)
 								<option value="{{$item->id}}">{{$item->name}}</option>
@@ -106,11 +109,11 @@
 
 						<div class="form-group">
 							<label for="people">How many people / pets?:</label>
-							<select id="people" class="form-control">
-								<option value="1" selected="selected">Choose One</option>
-								<option value="2">1 Person</option>
-								<option value="3">2 People</option>
-								<option value="4">3 People</option>
+							<select id="people" class="form-control" name="person" onclick="count_person(this.value)">
+								{{-- <option value="1" selected="selected">Choose One</option> --}}
+								<option value="1">1 Person</option>
+								<option value="2">2 People</option>
+								{{-- <option value="3">3 People</option>
 								<option value="5">4 People</option>
 								<option value="6">5 People</option>
 								<option value="7">6 People</option>
@@ -137,7 +140,7 @@
 								<option value="28">27 People</option>
 								<option value="29">28 People</option>
 								<option value="30">29 People</option>
-								<option value="31">30 People</option>
+								<option value="31">30 People</option> --}}
 							</select>
 						</div>
 
@@ -146,7 +149,7 @@
 
 							@forelse (App\Attribute::all() as $item)
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="checkbox" id="{{$item->id}}" value="{{$item->amount}}">
+								<input class="form-check-input" type="checkbox" id="{{$item->id}}" name="canvasOption[]" value="{{$item->id}}" onclick="fetch_canvas_option(`{{$item->amount}}`)">
 								<label class="form-check-label" for="{{$item->id}}">{{$item->name}}</label>
 								</div>
 							@empty
@@ -160,7 +163,7 @@
 							<label for="people">Add a print?: </label><br>
 							@forelse (App\Brand::all() as $item)
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="checkbox" id="{{$item->id}}" value="{{$item->amount}}">
+								<input class="form-check-input" type="checkbox" name="canvasPrint[]" id="{{$item->id}}" value="{{$item->id}}" onclick="fetch_canvas_print(`{{ $item->amount }}`)">
 								<label class="form-check-label" for="{{$item->id}}">{{$item->name}}</label>
 								</div>
 							@empty
@@ -170,7 +173,7 @@
 
 						<div class="form-group">
 							<label for="cmnt">Add any notes?</label>
-							<textarea id="cmnt" cols="30" rows="4" class="form-control"></textarea>
+							<textarea id="cmnt" cols="30" rows="4" name="notes" class="form-control"></textarea>
 						</div>
 
 
@@ -178,12 +181,12 @@
 						<div class="img-button">
 							<label for="img">Upload an image</label>
 							<br>
-							<button id="img">Choose image(s)</button>
+							<input type="file" name="file" id="img" >							
 						</div>
 						<br> 
 						<div class="cart-button">
 							<a href="cart.html" class="">
-								<button  type="button">Add To Cart</button>
+								<button  type="submit">Add To Cart</button>
 							</a>
 						</div>
 
@@ -214,5 +217,38 @@
 			</div>
  
 		
-	</div>   
+	</div>
+
+
+
+	<script>
+
+		// New adding
+    var price = document.getElementById("price").textContent;
+		var substringedPrice = price.substring(2);
+
+		function count_person(person){
+			var personWisePrice = parseInt(substringedPrice)*person;
+			console.log(personWisePrice);
+			document.getElementById("price").innerHTML ="$ "+personWisePrice;
+			document.getElementById("hiddenPrice").innerHTML = personWisePrice;			
+    }
+
+    function fetch_canvas_option(amount){
+			let price = document.getElementById("price").textContent;
+			let substringedPrice = price.substring(2);
+			let canvasOptionWisePrice = parseInt(substringedPrice) + parseInt(amount);
+			document.getElementById("price").innerHTML ="$ "+canvasOptionWisePrice;
+			document.getElementById("hiddenPrice").innerHTML = canvasOptionWisePrice;
+    }
+
+		function fetch_canvas_print(amount){
+			let price = document.getElementById("price").textContent;
+			let substringedPrice = price.substring(2);
+			let canvasPrintWisePrice = parseInt(substringedPrice) + parseInt(amount);
+			document.getElementById("price").innerHTML ="$ "+canvasPrintWisePrice;
+			document.getElementById("hiddenPrice").innerHTML = canvasPrintWisePrice;
+    }
+
+	</script>   
 @endsection

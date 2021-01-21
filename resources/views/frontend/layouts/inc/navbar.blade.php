@@ -34,8 +34,8 @@
                             <span class="tnr_menu_item">register</span>
                         </a></li>
                         <li class=""><a href="cart.html" class="">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="tnr_menu_item">cart</span>
+                            <a href="{{ route('carts') }}"><i class="fas fa-shopping-cart"></i></a>
+                            <span class="tnr_menu_item">{{Session::get('cartCount')}}</span>
                         </a></li>
                     </ul>
                 </div>
