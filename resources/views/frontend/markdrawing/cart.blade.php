@@ -194,7 +194,7 @@ $carts = Session::get('product');
           <div class="cart__submit-controls">
               <input type="submit" name="update" class="btn submit-update"
                   value="Update">
-              <a href="check-out.html" class="">
+              <a href="{{route('checkout.index')}}" class="">
                 <input type="submit" name="checkout" class="btn submit-checkout"
                   value="Check out" onclick="">
               </a>
@@ -214,6 +214,7 @@ $carts = Session::get('product');
   // var lastPrice = document.getElementById('result1').innerHTML;
   // var storePrice = parseInt(lastPrice);
   // localStorage.setItem("lastPrice", storePrice);
+
   function increase(id, price) {
     console.log(price);
       // var num1 = document.getElementById("fixed-price").innerHTML;

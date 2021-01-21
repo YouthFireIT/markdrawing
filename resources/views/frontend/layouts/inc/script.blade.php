@@ -10,3 +10,4 @@
 <script src="{{asset('markdrawing/js/zoomsl.min.js')}}"></script>
 <script src="{{asset('markdrawing/js/custom.js')}}"></script>
 <script src="{{asset('markdrawing/js/main.js')}}"></script>
+<script src="{{asset('markdrawing/js/check-out.js')}}"></script>

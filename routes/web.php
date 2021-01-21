@@ -16,7 +16,7 @@ Route::get('/portfoliomain',function(){
 Route::get('/product/{slug}','Frontend\ProductController@show')->name('product.show');
 
 
-Route::view('/test','frontend.markdrawing.portait');
+Route::view('/test','frontend.markdrawing.checkout');
 
 
 //// Temp order Store ////
@@ -487,6 +487,14 @@ Route::post('/ipn', 'SslCommerzPaymentController@ipn');
 ////// Cart /////
 Route::post('/cart', 'Frontend\CartsController@store')->name('cart.insert');
 
+
+
+
+
+//Checkout
+Route::get('/checkout', 'Frontend\CheckoutController@index')->name('checkout.index');
+
+ 
 // AAMARPAY  Start
 Route::post('/amarpay/getway/payment', 'Frontend\OrdersController@amarpayGetwayPayment')->name('amarpay.getway.payment');
 Route::post('payment/success', 'Frontend\OrdersController@paymentSuccess')->name('payment.success');
