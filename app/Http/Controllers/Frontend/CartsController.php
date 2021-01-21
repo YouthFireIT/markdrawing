@@ -343,11 +343,13 @@ class CartsController extends Controller
     }
 
     public function increase_quantity(Request $request)
-    {
+    {   
+        // dd($request->totalPrice);
         $carts = Session::get('product');           
         $quantity = $carts['quantity'][$request->cartId]+1;    
         $carts['quantity'][$request->cartId] = $quantity;
         Session::put('product', $carts);
+
         Session::put('totalPrice', $request->totalPrice);
         return true;
     		
