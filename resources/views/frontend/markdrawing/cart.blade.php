@@ -150,10 +150,10 @@ $carts = Session::get('product');
                       @if($carts['quantity'][$i] < 2)
                       <a href="#" class="counter-minus btn btn-primary disabled">-</a>
                       @else
-                      <a href="{{route('carts.updatequantity', ['id'=>$i,'action'=>'minus','dd'=>encrypt($price)])}}" class="counter-minus btn btn-primary quantity_minus" id="quantity_minus">-</a>
+                      <a class="counter-minus btn btn-primary quantity_minus" onclick="decrease(`{{ $carts['id'][$i] }}`, `{{ $price }}`)" id="quantity_minus">-</a>
                       @endif
                       <input type="text" value="{{$carts['quantity'][$i]}}" name="qtybutton" id="qtybutton">
-                      <a href="{{route('carts.updatequantity', ['id'=>$i,'action'=>'plus','dd'=>encrypt($price)])}}" class="counter-plus btn btn-primary quantity_plus">+</a>
+                      <a class="counter-plus btn btn-primary quantity_plus" onclick="increase(`{{ $carts['id'][$i] }}`, `{{ $price }}`)">+</a>
                     </div>
 
 
@@ -210,185 +210,42 @@ $carts = Session::get('product');
 </div>
 <script>
 
-$(document).ready(function(){
-      $('.quantity_plus').click(function(event) {
-        event.preventDefault();
-
-        var plus_url = $(this).attr("href");
-        // var price = parseInt($(this).closest(".product-row").find('#mainprice').text());
-        var tmpPrice = parseInt($(this).closest(".product-row").find('#mainprice').text());
-        var disPrice = parseInt($(this).closest(".product-row").find('#disPrice').val());
-        var price = tmpPrice - disPrice;
-        var product_total_price_old = parseInt($(this).closest(".product-row").find('#product_total_price').text());
-        var product_total_price = product_total_price_old + price;
-        var subtotal_final = parseInt($("#subtotal_final").text()) + price;
-        var order_final = parseInt($("#order_final").text()) + price;
-        document.getElementById('pay_amount').value = order_final;
-
-        var incQty  = parseInt($(this).closest(".product-row").find('#qtybutton').val());
-        var originalQty = parseInt($(this).closest(".product-row").find('#originalQty').val());
-
-        if(incQty < originalQty){
-          var quantity_total = parseInt($(this).closest(".product-row").find('#qtybutton').val()) + 1;
-        }
-
-
-        const qtotal = () => $(this).closest(".product-row").find('#qtybutton').val(quantity_total);
-        const ptotal = () => $(this).closest(".product-row").find('#product_total_price').text(product_total_price);
-
-        console.log($(this).closest(".product-row").find('#qtybutton').val());
-
-
-        if(incQty < originalQty){
-          $.ajax({
-                    url: plus_url,   // request url
-                    data:{} ,
-                    type: 'GET',
-                    success: function (data, status, xhr) {// success callback function
-                      console.log('success');
-                      qtotal();
-                      ptotal();
-                      $("#subtotal_final").text(subtotal_final);
-                      $("#order_final").text(order_final);
-                    },
-                    error: function() {
-                      var message = "Error cart not updated" ;
-                      notif({
-                        msg: message,
-                        type: "error"
-                      });
-                    }
-                  });
-        }
-
-      });
-
-
-      $('.quantity_minus').click(function(event) {
-        event.preventDefault();
-
-        var plus_url = $(this).attr("href");
-        // var price = parseInt($(this).closest(".product-row").find('#mainprice').text());
-        var tmpPrice = parseInt($(this).closest(".product-row").find('#mainprice').text());
-        var disPrice = parseInt($(this).closest(".product-row").find('#disPrice').val());
-        var price = tmpPrice - disPrice;
-        var product_total_price_old = parseInt($(this).closest(".product-row").find('#product_total_price').text());
-        var product_total_price = product_total_price_old - price;
-        var subtotal_final = parseInt($("#subtotal_final").text()) - price;
-        var order_final = parseInt($("#order_final").text()) - price;
-
-        document.getElementById('pay_amount').value = order_final;
-
-
-
-        var decQty = parseInt($(this).closest(".product-row").find('#qtybutton').val())
-        if(decQty > 1){
-          var quantity_total = parseInt($(this).closest(".product-row").find('#qtybutton').val()) - 1;
-
-        } else {
-          alert("Minimum limit is 1");
-        }
-
-        const qtotal = () => $(this).closest(".product-row").find('#qtybutton').val(quantity_total);
-        const ptotal = () => $(this).closest(".product-row").find('#product_total_price').text(product_total_price);
-
-
-
-
-
-        console.log($(this).closest(".product-row").find('#qtybutton').val());
-
-
-        if(decQty > 1){
-          $.ajax({
-                    url: plus_url,   // request url
-                    data:{} ,
-                    type: 'GET',
-                    success: function (data, status, xhr) {// success callback function
-                      console.log('success');
-                      qtotal();
-                      ptotal();
-                      $("#subtotal_final").text(subtotal_final);
-                      $("#order_final").text(order_final);
-                    },
-                    error: function() {
-                      var message = "Error cart not updated" ;
-                      notif({
-                        msg: message,
-                        type: "error"
-                      });
-                    }
-                  });
-        }
-
-      });
-
-
-      $('.shiping_city').click(function(event) {
-        event.preventDefault();
-
-        var city_link = $(this).attr("href");
-        var city_name = $(this).text();
-        if (city_name == 'Dhaka') {
-          var price = $('#dhaka_price').text();
-        }else {
-          var price = $('#all_bd_price').text();
-        }
-
-        var order_final = parseInt($("#subtotal_final").text()) + parseInt(price);
-
-        document.getElementById('pay_amount').value = order_final;
-
-        console.log(city_link, city_name,price);
-
-
-        $.ajax(
-        {
-                url: city_link,   // request url
-                data:{} ,
-                type: 'GET',
-                success: function (data, status, xhr) {
-                    // success callback function
-                    console.log('success');
-                    $('.before_city').hide();
-                    $('.payment_forms').show();
-                    $('.success_city').show().text('Selected shipping city '+city_name+' shipping charge '+price);
-                    $('#shipping_charge').text(price);
-                    $("#order_final").text(order_final);
-                  },
-                  error: function() {
-                    var message = "Error cart not updated" ;
-                    notif({
-                      msg: message,
-                      type: "error"
-                    });
-                  }
-                });
-
-            // $('#payment_forms').hide();
-
-      });
-
   // console.log(lastPrice);
   // var lastPrice = document.getElementById('result1').innerHTML;
   // var storePrice = parseInt(lastPrice);
   // localStorage.setItem("lastPrice", storePrice);
-  // function multiplyBy(id, price) {
-  //   console.log(price);
-  //     // var num1 = document.getElementById("fixed-price").innerHTML;
-  //     var num2 = document.getElementById('quantity' + id).value;
-  //     console.log(num2);
-  //     var tmpPrice = price * num2;
+  function increase(id, price) {
+    console.log(price);
+      // var num1 = document.getElementById("fixed-price").innerHTML;
+      var num2 = document.getElementById('quantity' + id).value;
+      console.log(num2);
+      var tmpPrice = price * num2;
+      var finalPrice = tmpPrice/num2;
+      document.getElementById('result' + id).innerHTML = tmpPrice;
+      // console.log(localStorage.getItem("lastPrice"));
+      // var finalPrice = parseInt(localStorage.getItem("lastPrice")) + (tmpPrice - price)
+      // localStorage.setItem("lastPrice", finalPrice);
+      var lastPrice = document.getElementById('result1').innerHTML;
+      // if()
+      document.getElementById('result1').innerHTML = parseInt(lastPrice) + parseInt(finalPrice);
+  }
 
+  function increase(id, price) {
+    console.log(price);
+      // var num1 = document.getElementById("fixed-price").innerHTML;
+      var num2 = document.getElementById('quantity' + id).value;
+      console.log(num2);
+      var tmpPrice = price * num2;
 
-  //     var finalPrice = tmpPrice/num2;
-  //     document.getElementById('result' + id).innerHTML = tmpPrice;
-  //     // console.log(localStorage.getItem("lastPrice"));
-  //     // var finalPrice = parseInt(localStorage.getItem("lastPrice")) + (tmpPrice - price)
-  //     // localStorage.setItem("lastPrice", finalPrice);
-  //     var lastPrice = document.getElementById('result1').innerHTML;
-  //     // if()
-  //     document.getElementById('result1').innerHTML = parseInt(lastPrice) + parseInt(finalPrice);
-  // }
+      var finalPrice = tmpPrice/num2;
+      document.getElementById('result' + id).innerHTML = tmpPrice;
+      // console.log(localStorage.getItem("lastPrice"));
+      // var finalPrice = parseInt(localStorage.getItem("lastPrice")) + (tmpPrice - price)
+      // localStorage.setItem("lastPrice", finalPrice);
+      var lastPrice = document.getElementById('result1').innerHTML;
+      // if()
+      document.getElementById('result1').innerHTML = parseInt(lastPrice) - parseInt(finalPrice);
+  }
+
 </script>
 @endsection
