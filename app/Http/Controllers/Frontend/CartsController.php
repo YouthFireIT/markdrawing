@@ -92,7 +92,7 @@ class CartsController extends Controller
             $request->session()->push('product.notes', $request->notes);
             $request->session()->push('product.image', $imageName);
             $request->session()->push('product.user_id', Auth::user()->id);            
-            // $request->session()->push('product.price', $price);
+            $request->session()->push('product.price', "0");
             // $request->session()->push('product.productPrice', $productPrice);
     	} else{
             $request->session()->push('product.id', $request->product_id);
@@ -103,6 +103,7 @@ class CartsController extends Controller
             $request->session()->push('product.canvasPrint', $request->canvasPrint);
             $request->session()->push('product.notes', $request->notes);
             $request->session()->push('product.image', $imageName);
+            $request->session()->push('product.price', "0");
             // $request->session()->push('product.price', $price);
             // $request->session()->push('product.productPrice', $productPrice);
         }
@@ -320,6 +321,7 @@ class CartsController extends Controller
         unset($carts['canvasPrint'][$id]); 
         unset($carts['notes'][$id]);
         unset($carts['image'][$id]);
+        unset($carts['price'][$id]);
 
         Session::put('product', $carts);
         $update = Session::get('product');
@@ -335,6 +337,7 @@ class CartsController extends Controller
                 $request->session()->push('product.canvasPrint', $update['canvasPrint'][$i]);
                 $request->session()->push('product.notes', $update['notes'][$i]);
                 $request->session()->push('product.image', $update['image'][$i]);
+                $request->session()->push('product.price', $update['price'][$i]);
             }            
         }
         $cartCount = Session::get('cartCount');
@@ -345,12 +348,13 @@ class CartsController extends Controller
     public function increase_quantity(Request $request)
     {
         $carts = Session::get('product');           
-        $quantity = $carts['quantity'][$request->cartId]+1;    
+        $quantity = $carts['quantity'][$request->cartId]+1;
         $carts['quantity'][$request->cartId] = $quantity;
+        $carts['price'][$request->cartId] = $request->price;
         Session::put('product', $carts);
+        Session::forget('totalPrice');
         Session::put('totalPrice', $request->totalPrice);
-        return true;
-    		
+        return $quantity;    		
     }
 
     public function decrease_quantity(Request $request)
@@ -358,10 +362,11 @@ class CartsController extends Controller
         $carts = Session::get('product');           
         $quantity = $carts['quantity'][$request->cartId]-1;    
         $carts['quantity'][$request->cartId] = $quantity;
+        $carts['price'][$request->cartId] = $request->price;
         Session::put('product', $carts);
+        Session::forget('totalPrice');
         Session::put('totalPrice', $request->totalPrice);
-        return true;
-    		
+        return $quantity;    		
     }
 
 }

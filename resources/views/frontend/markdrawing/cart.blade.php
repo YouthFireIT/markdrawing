@@ -137,7 +137,10 @@ $carts = Session::get('product');
                   <div class="col-lg-2">
                     <?php 
                       $price = ($product->price*$carts['person'][$i]) + $canvasOptionPrice + $canvasPrintPrice;
-                      $total_pcire = $total_pcire + $price;  
+                      $carts['price'][$i] = $price;
+                      Session::put('product', $carts);
+                      $total_pcire = $total_pcire + $price;
+                      Session::put('totalPrice', $total_pcire);  
                     ?>
                       <p class="pc-cart-price">$<span id="fixed-price" class="pl-2">{{ $price }}</span></p>
                   </div>
@@ -150,10 +153,10 @@ $carts = Session::get('product');
                       {{-- @if($carts['quantity'][$i] == 1)
                       <a href="#" class="counter-minus btn btn-primary disabled">-</a>
                       @else --}}
-                      <a class="counter-minus btn btn-primary quantity_minus" disabled="false" id="decBtn{{ $carts['id'][$i] }}" onclick="decrease(`{{ $carts['id'][$i] }}`, `{{ $price }}`)">-</a>
+                      <a class="counter-minus btn btn-primary quantity_minus" disabled="false" id="decBtn{{ $carts['id'][$i] }}" onclick="decrease(`{{ $i }}`, `{{ $carts['id'][$i] }}`, `{{ $price }}`)">-</a>
                       {{-- @endif --}}
                       <input type="text" value="{{$carts['quantity'][$i]}}" name="qtybutton" id="qtybutton{{$carts['id'][$i]}}">
-                      <a class="counter-plus btn btn-primary quantity_plus" onclick="increase(`{{ $carts['id'][$i] }}`, `{{ $price }}`)">+</a>
+                      <a class="counter-plus btn btn-primary quantity_plus" onclick="increase(`{{ $i }}`, `{{ $carts['id'][$i] }}`, `{{ $price }}`)">+</a>
                     </div>
 
 
@@ -215,7 +218,7 @@ $carts = Session::get('product');
   // var storePrice = parseInt(lastPrice);
   // localStorage.setItem("lastPrice", storePrice);
 
-  function increase(id, price) {
+  function increase(cartId, id, price) {
     // alert("fdjk");
       var qty = document.getElementById('qtybutton' + id).value;
       document.getElementById('qtybutton' + id).value = parseInt(qty) + 1;
@@ -239,9 +242,9 @@ $carts = Session::get('product');
         type: "post",
         url : '{{url("web/increase")}}',
         data: {
-            qty: parseInt(qty) + 1,
+            price: tmpPrice,
             totalPrice: parseInt(lastPrice) + parseInt(price),
-            cartId: id
+            cartId: cartId
           },
         success:function(data) {
           console.log(data);
@@ -254,7 +257,7 @@ $carts = Session::get('product');
     });
   }
 
-  function decrease(id, price) {
+  function decrease(cartId, id, price) {
     // alert("regtr");
       // var num1 = document.getElementById("fixed-price").innerHTML;
       var qty = document.getElementById('qtybutton' + id).value;
@@ -278,9 +281,9 @@ $carts = Session::get('product');
           type: "post",
           url : '{{url("web/decrease")}}',
           data: {
-              // qty: parseInt(qty) + 1,
+              price: tmpPrice,
               totalPrice: parseInt(lastPrice) - parseInt(price),
-              cartId: id
+              cartId: cartId
             },
           success:function(data) {
             console.log(data);

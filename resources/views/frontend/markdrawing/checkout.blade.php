@@ -10,7 +10,7 @@
                 <div class="d-flex justify-content-between mt-4">
                     <h3 class="pp-Contact-text">Contact information</h3>
                     <span class="pp-Already-text">Already have an account?<a href="login.html">Log in</a></span>
-                </div>
+                </div> 
 
                 <form class="checkout-form" onsubmit="return checkoutpage()">
                     <div class="form-group">
