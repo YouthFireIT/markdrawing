@@ -486,6 +486,8 @@ Route::post('/ipn', 'SslCommerzPaymentController@ipn');
 
 ////// Cart /////
 Route::post('/cart', 'Frontend\CartsController@store')->name('cart.insert');
+Route::post('/web/increase', 'Frontend\CartsController@increase_quantity');
+Route::post('/web/decrease', 'Frontend\CartsController@decrease_quantity');
 
 
 
