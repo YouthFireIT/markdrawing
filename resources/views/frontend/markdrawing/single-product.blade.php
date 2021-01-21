@@ -185,9 +185,7 @@
 						</div>
 						<br> 
 						<div class="cart-button">
-							<a href="cart.html" class="">
 								<button  type="submit">Add To Cart</button>
-							</a>
 						</div>
 
 					</form>

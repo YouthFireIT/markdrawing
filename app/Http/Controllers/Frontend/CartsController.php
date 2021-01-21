@@ -342,4 +342,26 @@ class CartsController extends Controller
         return back();        
     }
 
+    public function increase_quantity(Request $request)
+    {
+        $carts = Session::get('product');           
+        $quantity = $carts['quantity'][$request->cartId]+1;    
+        $carts['quantity'][$request->cartId] = $quantity;
+        Session::put('product', $carts);
+        Session::put('totalPrice', $request->totalPrice);
+        return true;
+    		
+    }
+
+    public function decrease_quantity(Request $request)
+    {
+        $carts = Session::get('product');           
+        $quantity = $carts['quantity'][$request->cartId]-1;    
+        $carts['quantity'][$request->cartId] = $quantity;
+        Session::put('product', $carts);
+        Session::put('totalPrice', $request->totalPrice);
+        return true;
+    		
+    }
+
 }
