@@ -495,6 +495,7 @@ Route::post('/web/decrease', 'Frontend\CartsController@decrease_quantity');
 
 //Checkout
 Route::get('/checkout', 'Frontend\CheckoutController@index')->name('checkout.index');
+Route::post('/checkout', 'Frontend\CheckoutController@store')->name('checkout.store');
 
  
 // AAMARPAY  Start
