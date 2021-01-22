@@ -67,8 +67,8 @@ $carts = Session::get('product');
       @endphp
 
       @for($i = 0; $i < $cart_counts; $i++)
-        
-        @if(isset($carts['person'][$i]))        
+
+        @if(isset($carts['person'][$i]))
           @php
             // $total_pcire += $carts['price'][$i];
             // $total_product_price += $carts['price'][$i];
@@ -96,9 +96,9 @@ $carts = Session::get('product');
 
                   <div class="col-lg-4">
                       <a href="#" class="pc-cart-Black">{{ $product->title }}</a>
-                      <p class="pc-cart-Where">Where are you ordering from? (MUST BE SELECTED 1st): {{ $carts['country'][$i] }} How many people / pets?: {{ $carts['person'][$i] }} person 
+                      <p class="pc-cart-Where">Where are you ordering from? (MUST BE SELECTED 1st): {{ $carts['country'][$i] }} How many people / pets?: {{ $carts['person'][$i] }} person
                         @if($carts['canvasOption'][$i] != NULL)Add a canvas Option? (pick as many as you like):@endif
-                        <?php 
+                        <?php
                           $canvases = $carts['canvasOption'][$i];
                           $canvasOptionPrice = 0;
                           if($canvases != NULL) {
@@ -113,10 +113,10 @@ $carts = Session::get('product');
                             }
                           }
                         ?>
-                        
-                        @if($carts['canvasPrint'][$i] != NULL)Add a canvas Print? (pick as many as you like):@endif 
-                        <?php 
-                          $canvasPrints = $carts['canvasPrint'][$i];                          
+
+                        @if($carts['canvasPrint'][$i] != NULL)Add a canvas Print? (pick as many as you like):@endif
+                        <?php
+                          $canvasPrints = $carts['canvasPrint'][$i];
                           $canvasPrintPrice = 0;
                           if($canvasPrints != NULL) {
                             for($k = 0; $k < count($canvasPrints); $k++){
@@ -126,7 +126,7 @@ $carts = Session::get('product');
                                 echo $canvasPrint->name;
                               } else {
                                 echo $canvasPrint->name." And ";
-                              }                            
+                              }
                             }
                           }
                         ?>
@@ -135,12 +135,12 @@ $carts = Session::get('product');
                   </div>
 
                   <div class="col-lg-2">
-                    <?php 
+                    <?php
                       $price = ($product->price*$carts['person'][$i]) + $canvasOptionPrice + $canvasPrintPrice;
                       $carts['price'][$i] = $price;
                       Session::put('product', $carts);
                       $total_pcire = $total_pcire + $price;
-                      Session::put('totalPrice', $total_pcire);  
+                      Session::put('totalPrice', $total_pcire);
                     ?>
                       <p class="pc-cart-price">$<span id="fixed-price" class="pl-2">{{ $price }}</span></p>
                   </div>
@@ -175,7 +175,7 @@ $carts = Session::get('product');
                       <p class="pc-cart-total">$<span class="result pl-2" id="result{{ $carts['id'][$i] }}">{{ $price }}</span></p>
                   </div>
               </div>
-            </div>          
+            </div>
           @endif
         @endif
       @endfor
@@ -302,7 +302,7 @@ $carts = Session::get('product');
       } else {
         document.getElementById('decBtn' + id).disabled = true;
       }
-      
+
   }
 
 </script>
