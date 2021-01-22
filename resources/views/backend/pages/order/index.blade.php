@@ -108,17 +108,10 @@
                 @foreach($orders as $order)
                 @php
                   $order_same_trx_id = Order::where('transaction_id', $order->transaction_id)->get();
-                  $shipping = Shipping::find(1);
-                  if ($order->city_name == "Dhaka") {
-                    $shipping_cost = $shipping->inside_dhaka;
-                  }else {
-                    $shipping_cost = $shipping->outside_dhaka;
-                  }
+                  
                 @endphp
                 <tr>
-                  <td>
-                    #
-                  </td>
+                  <td>{{ $loop->index+1 }}</td>
                   <td>{{$order->name}}</td>
                   <td>{{$order->phone}}</td>
                   <td>City: {{$order->city_name}} Shipping Address: {{$order->shipping_address}}</td>

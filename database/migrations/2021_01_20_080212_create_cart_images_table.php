@@ -13,6 +13,7 @@ class CreateCartImagesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('cart_images');
         Schema::create('cart_images', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->nullable();

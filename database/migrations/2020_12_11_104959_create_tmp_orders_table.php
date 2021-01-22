@@ -13,6 +13,7 @@ class CreateTmpOrdersTable extends Migration
      */
     public function up()
     { 
+        Schema::dropIfExists('tmp_orders');
         Schema::create('tmp_orders', function (Blueprint $table) {
             
             $table->bigIncrements('id');

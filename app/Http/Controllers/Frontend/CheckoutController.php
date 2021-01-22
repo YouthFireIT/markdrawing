@@ -62,7 +62,7 @@ class CheckoutController extends Controller
                     $order_product->products_id = $carts['id'][$i]; 
                     $order_product->person = $carts['person'][$i]; 
                     $order_product->products_quantity = $carts['quantity'][$i]; 
-                    $order_product->country = $carts['country'][$i]; 
+                    // $order_product->country = $carts['country'][$i]; 
                     $order_product->option_id = json_encode($carts['canvasOption'][$i]); 
                     $order_product->print_id = json_encode($carts['canvasPrint'][$i]); 
                     $order_product->notes = $carts['notes'][$i]; 
@@ -89,7 +89,7 @@ class CheckoutController extends Controller
                 $order_product->products_id = $carts['id'][$i]; 
                 $order_product->person = $carts['person'][$i]; 
                 $order_product->products_quantity = $carts['quantity'][$i]; 
-                $order_product->country = $carts['country'][$i]; 
+                // $order_product->country = $carts['country'][$i]; 
                 $order_product->option_id = json_encode($carts['canvasOption'][$i]); 
                 $order_product->print_id = json_encode($carts['canvasPrint'][$i]); 
                 $order_product->note = $carts['notes'][$i]; 
@@ -99,6 +99,9 @@ class CheckoutController extends Controller
             }
         }  
         
-        return "Your Order has been place";
+        Session::forget('product');
+        Session::forget('totalPrice');
+        Session::forget('cartCount');
+        return view('frontend.markdrawing.thanks');
     }
 }

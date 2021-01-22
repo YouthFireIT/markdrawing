@@ -144,23 +144,28 @@ $carts = Session::get('product');
                     ?>
                       <p class="pc-cart-price">$<span id="fixed-price" class="pl-2">{{ $price }}</span></p>
                   </div>
-                  <div class="col-lg-2">
 
+                  {{-- <div class="col-lg-2">
                     <div style="
                       max-width: 66px;
                       margin: 0 auto;
                       ">
-                      {{-- @if($carts['quantity'][$i] == 1)
+                      @if($carts['quantity'][$i] == 1)
                       <a href="#" class="counter-minus btn btn-primary disabled">-</a>
-                      @else --}}
+                      @else
                       <a class="counter-minus btn btn-primary quantity_minus" disabled="false" id="decBtn{{ $carts['id'][$i] }}" onclick="decrease(`{{ $i }}`, `{{ $carts['id'][$i] }}`, `{{ $price }}`)">-</a>
-                      {{-- @endif --}}
+                      @endif
                       <input type="text" value="{{$carts['quantity'][$i]}}" name="qtybutton" id="qtybutton{{$carts['id'][$i]}}">
                       <a class="counter-plus btn btn-primary quantity_plus" onclick="increase(`{{ $i }}`, `{{ $carts['id'][$i] }}`, `{{ $price }}`)">+</a>
                     </div>
+                      <input type="number" class="quantity" value="1" id="quantity{{ $carts['id'][$i] }}" onclick="multiplyBy(`{{ $carts['id'][$i] }}`, `{{ $price }}`)">
+                  </div> --}}
 
 
-                      {{-- <input type="number" class="quantity" value="1" id="quantity{{ $carts['id'][$i] }}" onclick="multiplyBy(`{{ $carts['id'][$i] }}`, `{{ $price }}`)"> --}}
+                  <div class="col-lg-2  text-center " style="margin-top: 80px">
+                    <a class="counter-minus btn btn-success quantity_minus" id="decBtn{{ $carts['id'][$i] }}" onclick="decrease(`{{ $i }}`, `{{ $carts['id'][$i] }}`, `{{ $price }}`)">-</a>
+                    <input class="text-center" style="width: 30px;border:none" type="text" value="{{$carts['quantity'][$i]}}" name="qtybutton" id="qtybutton{{$carts['id'][$i]}}" readonly>
+                    <a class="counter-plus btn btn-success quantity_plus" onclick="increase(`{{ $i }}`, `{{ $carts['id'][$i] }}`, `{{ $price }}`)">+</a>
                   </div>
 
 
