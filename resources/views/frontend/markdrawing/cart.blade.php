@@ -137,15 +137,35 @@ $carts = Session::get('product');
                   <div class="col-lg-2">
                     <?php
                       $price = ($product->price*$carts['person'][$i]) + $canvasOptionPrice + $canvasPrintPrice;
+                      $carts['price'][$i] = $price;
+                      Session::put('product', $carts);
                       $total_pcire = $total_pcire + $price;
+                      Session::put('totalPrice', $total_pcire);
                     ?>
                       <p class="pc-cart-price">$<span id="fixed-price" class="pl-2">{{ $price }}</span></p>
                   </div>
-                  <div class="col-lg-2  text-center " style="margin-top: 80px">
 
-                      <a class="counter-minus btn btn-success quantity_minus {{ $carts['quantity'][$i] < 2 ? 'disabled' : '' }}" onclick="decrease(`{{ $carts['id'][$i] }}`, `{{ $price }}`)" id="quantity_minus">-</a>
-                      <input class="text-center" style="width: 30px;border:none" type="text" value="{{$carts['quantity'][$i]}}" name="qtybutton" id="qtybutton" readonly>
-                      <a class="counter-plus btn btn-success quantity_plus" onclick="increase(`{{ $carts['id'][$i] }}`, `{{ $price }}`)">+</a>
+                  {{-- <div class="col-lg-2">
+                    <div style="
+                      max-width: 66px;
+                      margin: 0 auto;
+                      ">
+                      @if($carts['quantity'][$i] == 1)
+                      <a href="#" class="counter-minus btn btn-primary disabled">-</a>
+                      @else
+                      <a class="counter-minus btn btn-primary quantity_minus" disabled="false" id="decBtn{{ $carts['id'][$i] }}" onclick="decrease(`{{ $i }}`, `{{ $carts['id'][$i] }}`, `{{ $price }}`)">-</a>
+                      @endif
+                      <input type="text" value="{{$carts['quantity'][$i]}}" name="qtybutton" id="qtybutton{{$carts['id'][$i]}}">
+                      <a class="counter-plus btn btn-primary quantity_plus" onclick="increase(`{{ $i }}`, `{{ $carts['id'][$i] }}`, `{{ $price }}`)">+</a>
+                    </div>
+                      <input type="number" class="quantity" value="1" id="quantity{{ $carts['id'][$i] }}" onclick="multiplyBy(`{{ $carts['id'][$i] }}`, `{{ $price }}`)">
+                  </div> --}}
+
+
+                  <div class="col-lg-2  text-center " style="margin-top: 80px">
+                    <a class="counter-minus btn btn-success quantity_minus" id="decBtn{{ $carts['id'][$i] }}" onclick="decrease(`{{ $i }}`, `{{ $carts['id'][$i] }}`, `{{ $price }}`)">-</a>
+                    <input class="text-center" style="width: 30px;border:none" type="text" value="{{$carts['quantity'][$i]}}" name="qtybutton" id="qtybutton{{$carts['id'][$i]}}" readonly>
+                    <a class="counter-plus btn btn-success quantity_plus" onclick="increase(`{{ $i }}`, `{{ $carts['id'][$i] }}`, `{{ $price }}`)">+</a>
                   </div>
 
 
@@ -182,7 +202,7 @@ $carts = Session::get('product');
           <div class="cart__submit-controls">
               <input type="submit" name="update" class="btn submit-update"
                   value="Update">
-              <a href="check-out.html" class="">
+              <a href="{{route('checkout.index')}}" class="">
                 <input type="submit" name="checkout" class="btn submit-checkout"
                   value="Check out" onclick="">
               </a>
@@ -202,37 +222,87 @@ $carts = Session::get('product');
   // var lastPrice = document.getElementById('result1').innerHTML;
   // var storePrice = parseInt(lastPrice);
   // localStorage.setItem("lastPrice", storePrice);
-  function increase(id, price) {
-    console.log(price);
-      // var num1 = document.getElementById("fixed-price").innerHTML;
-      var num2 = document.getElementById('quantity' + id).value;
-      console.log(num2);
-      var tmpPrice = price * num2;
-      var finalPrice = tmpPrice/num2;
+
+  function increase(cartId, id, price) {
+    // alert("fdjk");
+      var qty = document.getElementById('qtybutton' + id).value;
+      document.getElementById('qtybutton' + id).value = parseInt(qty) + 1;
+
+      var tmpPrice = price * (parseInt(qty) + 1);
+      // var finalPrice = tmpPrice/num2;
       document.getElementById('result' + id).innerHTML = tmpPrice;
       // console.log(localStorage.getItem("lastPrice"));
       // var finalPrice = parseInt(localStorage.getItem("lastPrice")) + (tmpPrice - price)
       // localStorage.setItem("lastPrice", finalPrice);
       var lastPrice = document.getElementById('result1').innerHTML;
       // if()
-      document.getElementById('result1').innerHTML = parseInt(lastPrice) + parseInt(finalPrice);
+      document.getElementById('result1').innerHTML = parseInt(lastPrice) + parseInt(price);
+
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+      $.ajax({
+        type: "post",
+        url : '{{url("web/increase")}}',
+        data: {
+            price: tmpPrice,
+            totalPrice: parseInt(lastPrice) + parseInt(price),
+            cartId: cartId
+          },
+        success:function(data) {
+          console.log(data);
+          // document.getElementById(data[0]['products_id']).value = data[0]['customers_basket_quantity'];
+          // var strr = data[0]['final_price'];
+          // var num = strr.indexOf(".");
+          // var sub_strs_price = strr.substr(0, num);
+          // document.getElementById("total_prc"+data[0]['products_id']).innerHTML = "৳"+sub_strs_price;
+        }
+    });
   }
 
-  function increase(id, price) {
-    console.log(price);
+  function decrease(cartId, id, price) {
+    // alert("regtr");
       // var num1 = document.getElementById("fixed-price").innerHTML;
-      var num2 = document.getElementById('quantity' + id).value;
-      console.log(num2);
-      var tmpPrice = price * num2;
+      var qty = document.getElementById('qtybutton' + id).value;
+      if(qty > 1 ) {
+        document.getElementById('qtybutton' + id).value = parseInt(qty) - 1;
 
-      var finalPrice = tmpPrice/num2;
-      document.getElementById('result' + id).innerHTML = tmpPrice;
-      // console.log(localStorage.getItem("lastPrice"));
-      // var finalPrice = parseInt(localStorage.getItem("lastPrice")) + (tmpPrice - price)
-      // localStorage.setItem("lastPrice", finalPrice);
-      var lastPrice = document.getElementById('result1').innerHTML;
-      // if()
-      document.getElementById('result1').innerHTML = parseInt(lastPrice) - parseInt(finalPrice);
+        var tmpPrice = price * (parseInt(qty) - 1);
+        document.getElementById('result' + id).innerHTML = tmpPrice;
+        // console.log(localStorage.getItem("lastPrice"));
+        // var finalPrice = parseInt(localStorage.getItem("lastPrice")) + (tmpPrice - price)
+        // localStorage.setItem("lastPrice", finalPrice);
+        var lastPrice = document.getElementById('result1').innerHTML;
+        // if()
+        document.getElementById('result1').innerHTML = parseInt(lastPrice) - parseInt(price);
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
+        $.ajax({
+          type: "post",
+          url : '{{url("web/decrease")}}',
+          data: {
+              price: tmpPrice,
+              totalPrice: parseInt(lastPrice) - parseInt(price),
+              cartId: cartId
+            },
+          success:function(data) {
+            console.log(data);
+            // document.getElementById(data[0]['products_id']).value = data[0]['customers_basket_quantity'];
+            // var strr = data[0]['final_price'];
+            // var num = strr.indexOf(".");
+            // var sub_strs_price = strr.substr(0, num);
+            // document.getElementById("total_prc"+data[0]['products_id']).innerHTML = "৳"+sub_strs_price;
+          }
+        });
+      } else {
+        document.getElementById('decBtn' + id).disabled = true;
+      }
+
   }
 
 </script>
