@@ -23,6 +23,7 @@ $general = General::find(1);
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/charts/c3charts/c3.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/fonts/flag-icon-css/flag-icon.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/preloader/preloader.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     @yield('css')
     <title>@php echo $_SERVER['HTTP_HOST']; @endphp admin</title>
 </head>
@@ -200,13 +201,6 @@ $general = General::find(1);
                                             <a class="nav-link" href="{{ route('admin.reviews') }}">Reviews</a>
                                         </li>
 
-<<<<<<< HEAD
-                                       
-
-
-
-                            
-=======
                                         <li class="nav-item ">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-city" aria-controls="submenu-city"><i class="fa fa-th-large"></i>City<span class="badge badge-success">6</span></a>
                                 <div id="submenu-city" class="collapse submenu" style="">
@@ -221,7 +215,6 @@ $general = General::find(1);
                                     </ul>
                                 </div>
                             </li>
->>>>>>> 00f7ed4a55c598464a5c3af6f66977a4bc41ccb2
 
 
 

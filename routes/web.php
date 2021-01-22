@@ -365,6 +365,13 @@ Route::group(['prefix'=> 'admin'], function() {
 
 	Route::group(['prefix'=> 'orders'], function() {
 		Route::get('/','Backend\OrderController@manage')->name('admin.orders');
+		/// new added
+		Route::get('/product-details/{id}','Backend\OrderController@get_order_products')->name('order.product.details');
+		Route::post('/status-change','Backend\OrderController@order_status_change');
+		Route::post('/image-status-change','Backend\OrderController@image_status_change');
+		Route::post('/option-status-change','Backend\OrderController@option_status_change');
+		Route::post('/print-status-change','Backend\OrderController@print_status_change');
+		//// end  
 		Route::get('/search','Backend\OrderController@search')->name('admin.orders.search');
 		Route::get('/update_status/id/{id}/status/{action}','Backend\OrderController@update_status')->name('admin.order.update_status');
 		Route::post('/update_courier/{id}','Backend\OrderController@update_courier')->name('admin.tracking.update');

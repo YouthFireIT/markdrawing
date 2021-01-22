@@ -16,6 +16,7 @@ use App\CartImage;
 use App\Attribute;
 use App\Brand;
 use App\City;
+use Image;
  
 
 class CartsController extends Controller
@@ -33,14 +34,26 @@ class CartsController extends Controller
     	]);
     	
     // 	image save ////
-        $image = $request->file('file');
-        $date = date('Ymd_His');
-        $imageName = $date.'_'.$image->getClientOriginalName();
-        $imagePath = public_path('cartImages/');
-        $image->move($imagePath.$imageName);
-        $img = new CartImage;
-        $img->name = $imageName;
-        $img->save();
+        // $image = $request->file('file');
+        // // $date = date('Ymd_His');
+        // $imageName = $image->getClientOriginalExtension();
+        // $imagePath = public_path('cartImages');
+        // $image->move($imagePath.$imageName);
+        // $img = new CartImage;
+        // $img->name = $imageName;
+        // $img->save();
+
+        if ($request->hasFile('file')) {
+            $image = $request->file('file');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('cartImages/' . $imageName);
+            // Image::make($image)->resize(100, 100)->save($location);
+            Image::make($image)->save($location);
+
+            $img = new CartImage;
+            $img->name = $imageName;
+            $img->save();
+        }
 
         // if(!empty($request->canvasOption)){
         //     $canvasOption = Attribute::find($request->canvasOption);
