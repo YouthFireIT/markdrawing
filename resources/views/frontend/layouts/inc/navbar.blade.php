@@ -39,6 +39,11 @@
                         @endif
                         @else
 
+                        <li class=""><a href="{{ route('my-account') }}" class="">
+                            <i class="fas fa-user"></i>
+                            <span class="tnr_menu_item">My Account</span>
+                        </a></li>
+
                         <li class="">
                             <a id="navbarDropdown" class="" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}&nbsp;&darr;

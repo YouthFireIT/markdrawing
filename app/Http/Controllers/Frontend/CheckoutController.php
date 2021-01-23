@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Frontend;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\AttributeSet;
@@ -97,8 +96,7 @@ class CheckoutController extends Controller
                 $order_product->products_price = $carts['price'][$i]; 
                 $order_product->save(); 
             }
-        }  
-        
+        }   
         Session::forget('product');
         Session::forget('totalPrice');
         Session::forget('cartCount');
