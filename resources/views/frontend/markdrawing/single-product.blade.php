@@ -1,14 +1,14 @@
 @extends('frontend.layouts.master.app')
 
 @section('content')
-     
+
 	<!-- page name banner -->
 	<section id="page_banner_portrait">
 		<div class="row">
 			<div class="col-lg-6">
 				<div class="content_wrap_cc">
 					<p class="pt_heading c_center">
-						Charliesdrawings
+						Markdrawing
 					</p>
 				</div>
 			</div>
@@ -39,25 +39,25 @@
 	<div class="detail-area">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-6 col-md-4"> 
+				<div class="col-lg-6 col-md-4">
 					<div class="detail-img">
                         @php
-                        $image = App\ProductImage::where('product_id', $product->id)->first();	
+                        $image = App\ProductImage::where('product_id', $product->id)->first();
                         @endphp
 						<img src="{{ asset('/images').'/'.$image->image }}" class="big_img rounded">
 						<ul>
                             @php
-                                $images = App\ProductImage::where('product_id', $product->id)->get();	
-                            @endphp 
+                                $images = App\ProductImage::where('product_id', $product->id)->get();
+                            @endphp
                             @forelse ($images as $item)
                             <li><img src="{{ asset('/images').'/'.$item->image }}" class="small_img img-thumbnail"></li>
                             @empty
-                                
-                            @endforelse 
-							
-	 
+
+                            @endforelse
+
+
 						</ul>
-					</div> 
+					</div>
 				</div>
 
 				<div class="col-lg-6">
@@ -97,12 +97,12 @@
 						<input type="hidden" name="product_id" value="{{ $product->id }}">
 						<div class="form-group">
 							<label for="Programm">Where are you based? (MUST BE SELECTED):</label>
-							<select id="Programm" class="form-control" name="country">
-								<option value="1" selected="selected">Choose One</option>
+							<select id="Programm" class="form-control" name="country" >
+								<option value="" selected="selected">Choose One</option>
 								@forelse (App\City::all() as $item)
 								<option value="{{$item->id}}">{{$item->name}}</option>
 								@empty
-								
+git
 								@endforelse
 							</select>
 						</div>
@@ -153,10 +153,10 @@
 								<label class="form-check-label" for="{{$item->id}}">{{$item->name}}</label>
 								</div>
 							@empty
-								
+
 							@endforelse
-							
-						 
+
+
 						</div>
 
 						<div class="form-group">
@@ -167,7 +167,7 @@
 								<label class="form-check-label" for="{{$item->id}}">{{$item->name}}</label>
 								</div>
 							@empty
-								
+
 							@endforelse
 						</div>
 
@@ -181,9 +181,9 @@
 						<div class="img-button">
 							<label for="img">Upload an image</label>
 							<br>
-							<input type="file" name="file" id="img" >							
+							<input type="file" name="file" id="img" >
 						</div>
-						<br> 
+						<br>
 						<div class="cart-button">
 								<button  type="submit">Add To Cart</button>
 						</div>
@@ -204,17 +204,17 @@
 			</ul>
 
 			<hr>
-{{-- 
+{{--
 			<span>Ordering a charlies drawing will be one of the most emotional gifts/purchases you will ever make.</span> --}}
 
 			<div class="discription-content">
 				{{-- <h6>How long will it take?</h6> --}}
 				<p>
-                    {!! $product->description !!} 
+                    {!! $product->description !!}
                 </p>
 			</div>
- 
-		
+
+
 	</div>
 
 
@@ -229,7 +229,7 @@
 			var personWisePrice = parseInt(substringedPrice)*person;
 			console.log(personWisePrice);
 			document.getElementById("price").innerHTML ="$ "+personWisePrice;
-			document.getElementById("hiddenPrice").innerHTML = personWisePrice;			
+			document.getElementById("hiddenPrice").innerHTML = personWisePrice;
     }
 
     function fetch_canvas_option(amount){
@@ -248,5 +248,5 @@
 			document.getElementById("hiddenPrice").innerHTML = canvasPrintWisePrice;
     }
 
-	</script>   
+	</script>
 @endsection

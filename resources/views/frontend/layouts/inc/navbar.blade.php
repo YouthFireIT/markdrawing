@@ -56,14 +56,11 @@
                                 </form>
                             </div>
                         </li>
-                      
-
+                        @endguest
                         <li class=""><a href="cart.html" class="">
                             <a href="{{ route('carts') }}"><i class="fas fa-shopping-cart"></i></a>
                             <span class="tnr_menu_item">{{Session::get('cartCount')}}</span>
                         </a></li>
-
-                        @endguest
                     </ul>
                 </div>
             </div>
@@ -109,7 +106,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="contact_us.html">Contact us</a>
                     </li>
-                    
+
                 </ul>
                 <form class="form-inline my-2 my-lg-0 nav_serach_bar">
                     <input class="form-control" type="search" placeholder="Search" aria-label="Search">
