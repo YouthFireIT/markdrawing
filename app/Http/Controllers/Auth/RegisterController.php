@@ -76,7 +76,7 @@ class RegisterController extends Controller
      */
     protected function register(Request $request)
     {
-        // return $request;
+        // dd($request->first_name);
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',

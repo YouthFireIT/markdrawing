@@ -25,18 +25,45 @@
             <div class="col-md-6">
                 <div class="top_nav_right float-right">
                     <ul class="top_nav_right_menu">
+                        @guest
                         <li class=""><a href="{{ route('login') }}" class="">
                             <i class="fas fa-user"></i>
                             <span class="tnr_menu_item">login</span>
                         </a></li>
+                        @if (Route::has('register'))
                         <li class=""><a href="{{ route('register') }}" class="">
                             <i class="fas fa-user-plus"></i>
                             <span class="tnr_menu_item">register</span>
                         </a></li>
+
+                        @endif
+                        @else
+
+                        <li class="">
+                            <a id="navbarDropdown" class="" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}&nbsp;&darr;
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                      
+
                         <li class=""><a href="cart.html" class="">
                             <a href="{{ route('carts') }}"><i class="fas fa-shopping-cart"></i></a>
                             <span class="tnr_menu_item">{{Session::get('cartCount')}}</span>
                         </a></li>
+
+                        @endguest
                     </ul>
                 </div>
             </div>

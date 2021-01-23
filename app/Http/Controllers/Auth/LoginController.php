@@ -67,11 +67,11 @@ class LoginController extends Controller
     public function login(Request $request)
       {
         $this->validate($request, [
-          'phone_number' => 'required',
+          'email' => 'required',
           'password' => 'required',
         ]);
 
-        if (Auth::guard('web')->attempt(['phone_number' => $request->phone_number, 'password' => $request->password], $request->remember)) {
+        if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
           // Log Him Now
           return redirect()->intended(route('index'));
         }else {
