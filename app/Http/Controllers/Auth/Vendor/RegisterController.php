@@ -55,6 +55,7 @@ class RegisterController extends Controller
      */
     protected function register(Request $request)
     {
+        // dd("fgfh");
         
 
         $request->validate([

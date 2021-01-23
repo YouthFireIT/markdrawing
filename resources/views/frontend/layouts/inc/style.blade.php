@@ -12,6 +12,7 @@
  <link rel="stylesheet" href="{{asset('markdrawing/css/check-out.css')}}">
  <link rel="stylesheet" type="text/css" href="{{asset('markdrawing/css/responsive.spp.css')}}">
  <link rel="icon" href="{{asset('images/icon.png')}}" sizes="16x16">
+ <link rel="stylesheet" href="{{asset('markdrawing/css/register.css')}}" type="text/css">
  <!-- ======font awesome kit====== -->
  <script src="https://kit.fontawesome.com/aca266facc.js" crossorigin="anonymous"></script>
  @yield('style')

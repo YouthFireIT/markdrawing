@@ -25,11 +25,11 @@
             <div class="col-md-6">
                 <div class="top_nav_right float-right">
                     <ul class="top_nav_right_menu">
-                        <li class=""><a href="login.html" class="">
+                        <li class=""><a href="{{ route('login') }}" class="">
                             <i class="fas fa-user"></i>
                             <span class="tnr_menu_item">login</span>
                         </a></li>
-                        <li class=""><a href="registration.html" class="">
+                        <li class=""><a href="{{ route('register') }}" class="">
                             <i class="fas fa-user-plus"></i>
                             <span class="tnr_menu_item">register</span>
                         </a></li>

@@ -33,7 +33,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/user/profile';
     // protected $redirectTo = '/';
 
     /**
@@ -47,7 +47,7 @@ class RegisterController extends Controller
     }
 
     public function showRegistrationForm()
-    { 
+    {
         $cities = City::orderBy('priority','asc')->get();
         return view('auth.register', compact('cities'));
     }
@@ -63,7 +63,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string'],
+            'email' => ['required', 'string','max:15'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],            
         ]);
     }
@@ -76,55 +76,57 @@ class RegisterController extends Controller
      */
     protected function register(Request $request)
     {
-        // return $request;
+        // dd($request->all());
+
         $request->validate([
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|string|unique:users',  
-            'password' => 'required|string|min:8|confirmed',                      
+            'name' => 'required|string|max:255',
+            'password' => 'required|string|min:8|confirmed',
+            'phone_number' => 'required|string|min:11|max:14|unique:users',
+            
         ]);
 
-        // $otp = rand(1000,9999);
+        $otp = rand(1000,9999);
 
         $user =  User::create([
-            'name' => $request->first_name." ".$request->last_name,
-            // 'last_name' => $request->last_name,
-            // 'otp' => $otp,
-            // 'address' => $request->address,
-            // 'delivery_phone' => $request->delivery_phone,
-            // 'delivery_address' => $request->delivery_address,
-            // 'gender' => $request->gender,
-            // 'city_id' => $request->city_id,
+            'name' => $request->name,
+            'phone_number' => $request->phone_number,
+            'otp' => $otp,
+            'address' => $request->address,
+            'delivery_phone' => $request->delivery_phone,
+            'delivery_address' => $request->delivery_address,
+            'gender' => $request->gender,
+            'city_id' => $request->city_id,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'remember_token' => Str::random(50),            
+            'remember_token' => Str::random(50),
+            
+
         ]);
 
         //POST Method example
 
-        // $url = "http://66.45.237.70/api.php";
-        // $number=$request->phone_number;
-        // $text="Your Dailydael OTP code is $otp";
-        // $data= array(
-        // 'username'=>"dailydealbd",
-        // 'password'=>"UTGKNZ85",
-        // 'number'=>"$number",
-        // 'message'=>"$text"
-        // );
+        $url = "http://66.45.237.70/api.php";
+        $number=$request->phone_number;
+        $text="Your Dailydael OTP code is $otp";
+        $data= array(
+        'username'=>"dailydealbd",
+        'password'=>"UTGKNZ85",
+        'number'=>"$number",
+        'message'=>"$text"
+        );
 
-        // $ch = curl_init(); // Initialize cURL
-        // curl_setopt($ch, CURLOPT_URL,$url);
-        // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // $smsresult = curl_exec($ch);
-        // $p = explode("|",$smsresult);
-        // $sendstatus = $p[0];
+        $ch = curl_init(); // Initialize cURL
+        curl_setopt($ch, CURLOPT_URL,$url);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $smsresult = curl_exec($ch);
+        $p = explode("|",$smsresult);
+        $sendstatus = $p[0];
 
-        // $user->notify(new VerifyRegistration($user));
+        $user->notify(new VerifyRegistration($user));
         //return view('frontend.pages.user.home',compact('user'));
         Auth::login($user);
-        return redirect()->route('index');
-        // return redirect()->route('user.profile.home',$user->id);
+        return redirect()->route('user.profile.home',$user->id);
         // return redirect()->route('index');
     }
 }
