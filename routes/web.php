@@ -498,6 +498,8 @@ Route::post('/web/decrease', 'Frontend\CartsController@decrease_quantity');
 
 
 
+//My Account ==== User Account
+Route::get('user/my-account','Frontend\UserprofileController@index')->name('my-account');
 
 
 //Checkout
