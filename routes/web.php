@@ -3,7 +3,13 @@
 Route::get('/','Frontend\PagesController@index')->name('index');
 
 Route::get('/family-portait','Frontend\PagesController@familyPortait')->name('family.portait');
-Route::get('/portait','Frontend\PagesController@portait')->name('portait');
+Route::get('/portait','Frontend\PagesController@portait')->name('portait'); 
+Route::get('/artwork-print','Frontend\PagesController@artworkPrint')->name('artwork.print');
+Route::get('/review','Frontend\PagesController@review')->name('review.show');
+Route::get('/faq','Frontend\PagesController@faq')->name('faq');
+Route::get('/contact','Frontend\PagesController@contactShow')->name('contact.show');
+Route::post('/contact','Frontend\PagesController@contactSave')->name('contact.save');
+Route::post('/newsletter','Frontend\PagesController@newsletterSave')->name('newsletter.save');
 
 //portfolio
 Route::get('/portfolio',function(){
@@ -500,6 +506,8 @@ Route::post('/web/decrease', 'Frontend\CartsController@decrease_quantity');
 
 //My Account ==== User Account
 Route::get('user/my-account','Frontend\UserprofileController@index')->name('my-account');
+Route::post('user/my-order-products','Frontend\UserprofileController@show_order_products');
+
 
 
 //Checkout

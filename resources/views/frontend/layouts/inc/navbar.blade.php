@@ -61,11 +61,22 @@
                                 </form>
                             </div>
                         </li>
+
                         @endguest
-                        <li class=""><a href="cart.html" class="">
+
+                        <li class="">
+                            <a href="cart.html" class="">
                             <a href="{{ route('carts') }}"><i class="fas fa-shopping-cart"></i></a>
-                            <span class="tnr_menu_item">{{Session::get('cartCount')}}</span>
-                        </a></li>
+                            @if (Session::get('cartCount'))
+                                <div id="CartCount" class="site-header__cart-count">
+                                    <span>{{Session::get('cartCount')}}</span>
+                                </div>
+                            @endif
+                            </a>
+                        </li>
+
+
+
                     </ul>
                 </div>
             </div>
@@ -90,26 +101,45 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto my_nav">
-                    <li class="nav-item active">
+                    <li class="nav-item @if (Request::url() ==  route('index'))
+                    active
+                   @endif">
                         <a class="nav-link" href="{{route('index')}}">Home</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @if (Request::url() ==  route('portait'))
+                     active
+                    @endif">
                         <a class="nav-link" href="{{route('portait')}}">Portraits</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="artworkprints.html">Artwork Prints</a>
+
+                    <li class="nav-item @if (Request::url() ==  route('artwork.print'))
+                    active
+                   @endif">
+                        <a class="nav-link" href="{{route('artwork.print')}}">Artwork Prints</a>
                     </li>
-                    <li class="nav-item">
+
+                    <li class="nav-item @if (Request::url() ==  route('family.portait'))
+                    active
+                   @endif">
                         <a class="nav-link" href="{{route('family.portait')}}">Family Portrait</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="review.html">Reviews</a>
+
+                    <li class="nav-item @if (Request::url() ==  route('review.show'))
+                    active
+                   @endif">
+                        <a class="nav-link" href="{{route('review.show')}}">Reviews</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="faq.html">FAQ</a>
+
+                    <li class="nav-item @if (Request::url() ==  route('faq'))
+                    active
+                   @endif">
+                        <a class="nav-link" href="{{route('faq')}}">FAQ</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact_us.html">Contact us</a>
+
+                    <li class="nav-item @if (Request::url() ==  route('contact.show'))
+                    active
+                   @endif">
+                        <a class="nav-link" href="{{route('contact.show')}}">Contact us</a>
                     </li>
 
                 </ul>

@@ -13,6 +13,32 @@
  <link rel="stylesheet" type="text/css" href="{{asset('markdrawing/css/responsive.spp.css')}}">
  <link rel="icon" href="{{asset('images/icon.png')}}" sizes="16x16">
  <link rel="stylesheet" href="{{asset('markdrawing/css/register.css')}}" type="text/css">
+
+ <style>
+     .site-header__cart-count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0.4rem;
+    top: 0.2rem;
+    font-weight: bold;
+    background-color: #2bb573;
+    color: #fff;
+    border-radius: 50%;
+    min-width: 1em;
+    height: 1em;
+    box-sizing: border-box;
+     }
+
+     .site-header__cart-count {
+        right: 13px;
+     }
+ </style>
+
+
+
+
  <!-- ======font awesome kit====== -->
  <script src="https://kit.fontawesome.com/aca266facc.js" crossorigin="anonymous"></script>
  @yield('style')
