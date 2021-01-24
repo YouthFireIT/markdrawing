@@ -371,7 +371,7 @@ Route::group(['prefix'=> 'admin'], function() {
 		Route::post('/image-status-change','Backend\OrderController@image_status_change');
 		Route::post('/option-status-change','Backend\OrderController@option_status_change');
 		Route::post('/print-status-change','Backend\OrderController@print_status_change');
-		//// end  
+		//// end
 		Route::get('/search','Backend\OrderController@search')->name('admin.orders.search');
 		Route::get('/update_status/id/{id}/status/{action}','Backend\OrderController@update_status')->name('admin.order.update_status');
 		Route::post('/update_courier/{id}','Backend\OrderController@update_courier')->name('admin.tracking.update');
@@ -505,12 +505,13 @@ Route::get('user/my-account','Frontend\UserprofileController@index')->name('my-a
 //Checkout
 Route::get('/checkout', 'Frontend\CheckoutController@index')->name('checkout.index');
 Route::post('/checkout', 'Frontend\CheckoutController@store')->name('checkout.store');
+Route::get('/checkout/success', 'Frontend\CheckoutController@paymentSuccess');
 
- 
+
 // AAMARPAY  Start
-Route::post('/amarpay/getway/payment', 'Frontend\OrdersController@amarpayGetwayPayment')->name('amarpay.getway.payment');
-Route::post('payment/success', 'Frontend\OrdersController@paymentSuccess')->name('payment.success');
-Route::post('payment/failed', 'Frontend\OrdersController@paymentFailed')->name('payment.failed');
-Route::get('payment/cancel', 'Frontend\OrdersController@paymentCancel')->name('payment.cancel');
+// Route::post('/amarpay/getway/payment', 'Frontend\OrdersController@amarpayGetwayPayment')->name('amarpay.getway.payment');
+// Route::post('payment/success', 'Frontend\OrdersController@paymentSuccess')->name('payment.success');
+// Route::post('payment/failed', 'Frontend\OrdersController@paymentFailed')->name('payment.failed');
+// Route::get('payment/cancel', 'Frontend\OrdersController@paymentCancel')->name('payment.cancel');
 
 

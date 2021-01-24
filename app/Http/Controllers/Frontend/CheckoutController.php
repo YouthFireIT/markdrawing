@@ -43,7 +43,7 @@ class CheckoutController extends Controller
                 $order = new Order();
                 if(!empty(Auth::user()->id())){
                     $order->user_id = Auth::user()->id();
-                } 
+                }
                 $order->phone = $request->phone;
                 $order->email = $request->email;
                 $order->name = $request->first_name;
@@ -58,19 +58,19 @@ class CheckoutController extends Controller
                 for($i = 0; $i < $cart_counts; $i++){
                     $order_product = new OrderProduct();
                     $order_product->orders_id = $order_id;
-                    $order_product->products_id = $carts['id'][$i]; 
-                    $order_product->person = $carts['person'][$i]; 
-                    $order_product->products_quantity = $carts['quantity'][$i]; 
-                    // $order_product->country = $carts['country'][$i]; 
-                    $order_product->option_id = json_encode($carts['canvasOption'][$i]); 
-                    $order_product->print_id = json_encode($carts['canvasPrint'][$i]); 
-                    $order_product->notes = $carts['notes'][$i]; 
-                    $order_product->image = $carts['image'][$i]; 
-                    $order_product->products_price = $carts['price'][$i]; 
-                    $order_product->save(); 
+                    $order_product->products_id = $carts['id'][$i];
+                    $order_product->person = $carts['person'][$i];
+                    $order_product->products_quantity = $carts['quantity'][$i];
+                    // $order_product->country = $carts['country'][$i];
+                    $order_product->option_id = json_encode($carts['canvasOption'][$i]);
+                    $order_product->print_id = json_encode($carts['canvasPrint'][$i]);
+                    $order_product->notes = $carts['notes'][$i];
+                    $order_product->image = $carts['image'][$i];
+                    $order_product->products_price = $carts['price'][$i];
+                    $order_product->save();
                 }
          }else{
-            $order = new Order(); 
+            $order = new Order();
             $order->phone = $request->phone;
             $order->email = $request->email;
             $order->name = $request->first_name;
@@ -81,25 +81,29 @@ class CheckoutController extends Controller
             }
             $order->save();
             $order_id = $order->id;
-    
+
             for($i = 0; $i < $cart_counts; $i++){
                 $order_product = new OrderProduct();
                 $order_product->orders_id = $order_id;
-                $order_product->products_id = $carts['id'][$i]; 
-                $order_product->person = $carts['person'][$i]; 
-                $order_product->products_quantity = $carts['quantity'][$i]; 
-                // $order_product->country = $carts['country'][$i]; 
-                $order_product->option_id = json_encode($carts['canvasOption'][$i]); 
-                $order_product->print_id = json_encode($carts['canvasPrint'][$i]); 
-                $order_product->note = $carts['notes'][$i]; 
-                $order_product->image = $carts['image'][$i]; 
-                $order_product->products_price = $carts['price'][$i]; 
-                $order_product->save(); 
+                $order_product->products_id = $carts['id'][$i];
+                $order_product->person = $carts['person'][$i];
+                $order_product->products_quantity = $carts['quantity'][$i];
+                // $order_product->country = $carts['country'][$i];
+                $order_product->option_id = json_encode($carts['canvasOption'][$i]);
+                $order_product->print_id = json_encode($carts['canvasPrint'][$i]);
+                $order_product->note = $carts['notes'][$i];
+                $order_product->image = $carts['image'][$i];
+                $order_product->products_price = $carts['price'][$i];
+                $order_product->save();
             }
-        }   
+        }
         Session::forget('product');
         Session::forget('totalPrice');
         Session::forget('cartCount');
         return view('frontend.markdrawing.thanks');
     }
+    public function paymentSuccess(){
+        return 'dsgha';
+    }
+
 }

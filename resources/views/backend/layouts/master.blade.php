@@ -303,13 +303,13 @@ $general = General::find(1);
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{route('admin.cities')}}">Countries</a>
                                         </li>
-                                        
+
                                     </ul>
                                 </div>
                             </li>
 
 
-                            <li class="nav-item ">
+                            {{-- <li class="nav-item ">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenucms" aria-controls="submenucms"><i class="fas fa-cogs"></i> CMS <span class="badge badge-success">6</span></a>
                                 <div id="submenucms" class="collapse submenu @if(Request::url() ==  route('admin.menu.wpmenu') or Request::url() ==  route('admin.general.edit',1) or Request::url() ==  route('admin.slider.create') or Request::url() ==  route('admin.sliders') or Request::url() ==  route('admin.general.color.edit') or Request::url() ==  route('admin.general.font.edit')) show @endif" style="">
                                     <ul class="nav flex-column">
@@ -346,7 +346,7 @@ $general = General::find(1);
 
                                     </ul>
                                 </div>
-                            </li>
+                            </li> --}}
 
 
 

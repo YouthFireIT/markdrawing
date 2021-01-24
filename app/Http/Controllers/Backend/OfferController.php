@@ -15,7 +15,7 @@ class OfferController extends Controller
         $this->middleware('auth:admin');
     }
 
-    
+
     public function create()
     {
     	//$products = Product::orderBy('id', 'desc')->paginate(20);
@@ -63,29 +63,29 @@ class OfferController extends Controller
 
     public function addproducts($product_id, $offer_id)
     {
-        
-        
+
+
         $current_time = date("Y-m-d");
         $current = date_parse_from_format('Y-m-d', $current_time);
         $current_timestamp = mktime(0, 0, 0, $current['month'], $current['day'], $current['year']);
-        
-        
-        
-        
+
+
+
+
         $offer = Offer::find($offer_id);
-        
+
         $start_date = date_parse_from_format('Y-m-d', $offer->start);
         // dd($start_date);
         // $start_date = $offer->start;
         // dd($start_date);
         $start_timestamp = mktime(0, 0, 0, $start_date['month'], $start_date['day'], $start_date['year']);
-        
-        
+
+
         $end_date = date_parse_from_format('Y-m-d', $offer->end);
         // $end_date = $offer->end;
         $end_timestamp = mktime(0, 0, 0, $end_date['month'], $end_date['day'], $end_date['year']);
         // dd($end_timestamp);
-        
+
         if($current_timestamp >= $start_timestamp && $current_timestamp <= $end_timestamp){
             $product = Product::find($product_id);
             if($product->is_add_to_offer == 0){
@@ -93,17 +93,17 @@ class OfferController extends Controller
                 $product->offer_id = $offer_id;
                 $product->save();
             } else{
-                echo '<script>alert("Product Already Added In A Offer")</script>'; 
+                echo '<script>alert("Product Already Added In A Offer")</script>';
             }
         } else{
             echo '<script>alert("Offer no longer available")</script>';
         }
-        
+
         // dd($product_id);
-        
-        
-        
-        
+
+
+
+
 
         if (is_null($offer->product_id)) {
             $offer->product_id = $product_id;
@@ -129,13 +129,13 @@ class OfferController extends Controller
                 $offer->product_id = $products_all;
                 echo $products_all;
             }
-            
+
         }
 
 
 
         $offer->save();
-        
+
         return back();
     }
 
@@ -143,22 +143,22 @@ class OfferController extends Controller
     public function manage()
     {
         $offers = Offer::orderBy('id', 'desc')->get();
-        
+
         foreach($offers as $offer){
-            
+
             $current_time = date("Y-m-d");
             $current = date_parse_from_format('Y-m-d', $current_time);
             $current_timestamp = mktime(0, 0, 0, $current['month'], $current['day'], $current['year']);
-            
+
             $start_date = date_parse_from_format('Y-m-d', $offer->start);
             $start_timestamp = mktime(0, 0, 0, $start_date['month'], $start_date['day'], $start_date['year']);
-            
+
             $end_date = date_parse_from_format('Y-m-d', $offer->end);
             $end_timestamp = mktime(0, 0, 0, $end_date['month'], $end_date['day'], $end_date['year']);
-            
+
             if($current_timestamp >= $start_timestamp && $current_timestamp <= $end_timestamp){
-                
-                
+
+
             } else {
                 // dd("hlw");
                 $offer->product_id = "";
@@ -170,10 +170,10 @@ class OfferController extends Controller
                     $product->save();
                 }
             }
-            
+
         }
 
-        return view('backend.pages.offer.index', compact('offers') ); 
+        return view('backend.pages.offer.index', compact('offers') );
     }
 
     //Add products from index page
@@ -205,12 +205,21 @@ class OfferController extends Controller
         else {
             $offer->continue = Null;
         }
-        
+
         $offer->rate = $request->rate."%";
-        
+
         $offer->save();
 
         return redirect()->route('admin.offers');
+
+    }
+
+    public function delete($id)
+    {
+    	$offer = Offer::find($id);
+
+    	$offer->delete();
+       return back()->with('message','Offer Delete Successfuly');
 
     }
 }
