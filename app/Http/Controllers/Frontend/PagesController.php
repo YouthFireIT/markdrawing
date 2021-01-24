@@ -9,6 +9,8 @@ use App\Slider;
 use App\Category;
 use App\Offer;
 use App\Page;
+use App\Contact;
+use App\Newsletter;
 
 class PagesController extends Controller
 {
@@ -267,6 +269,74 @@ class PagesController extends Controller
      * return response
      */
     public function portait(){
-        return view('frontend.markdrawing.portait');
+
+        $products = Product::get();
+        return view('frontend.markdrawing.portait',compact('products'));
     }
+
+    /**
+     * return response
+     * 
+     */
+    public function artworkPrint(){
+        return view('frontend.markdrawing.artwork-print');
+    }
+
+    /**
+     * return response
+     * 
+     */
+    public function review(){
+        return view('frontend.markdrawing.review');
+    }
+    
+    /**
+     * return response
+     * 
+     */
+    public function faq(){
+        return view('frontend.markdrawing.faq');
+    }
+    
+    /**
+     * return response
+     * 
+     */
+    public function contactShow(){
+        return view('frontend.markdrawing.contact');
+    }
+
+    /**
+     * Contact Save
+     * 
+     */
+    public function contactSave(Request $request){
+
+        $request->validate([
+            'email' => 'required|email'
+        ]);
+    
+        $contact = new Contact();
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->phone = $request->phone;
+        $contact->message = $request->message;
+        $contact->save();
+        return back()->with('message','Thanks for contacting with us');  
+    }
+
+    /**
+     * save newsletter email
+     */
+    public function newsletterSave(Request $request){
+        $request->validate([
+            'email' => 'required|email|unique:newsletters'
+        ]);
+        $newsletter = new Newsletter();
+        $newsletter->email = $request->email;
+        $newsletter->save();
+        return back()->with('message','Thanks for subscribe');  
+    }
+
+
 }

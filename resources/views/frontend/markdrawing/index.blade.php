@@ -93,7 +93,7 @@
 														$image = App\ProductImage::where('product_id', $item->id)->first();	
 													?>
                             <img src="{{ asset('/images').'/'.$image->image }}" alt="" class="img-fluid">
-                            <p class="py-3">{{ $item->name }}</p>
+                            <p class="py-3">{{ $item->title }}</p>
                             {{-- <div id="star_rating1" start="3" class="text-left d-block"></div> --}}
                             <h2 class="text-center">Tk {{ $item->price }}</h2>
                         </div>

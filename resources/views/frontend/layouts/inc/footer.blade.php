@@ -27,19 +27,14 @@
                                 </a>
                             </div>
                             <div class="fw_link_group">
-                                <a href="contact_us.html" class="text-decoration-none">
+                                <a href="{{route('contact.show')}}" class="text-decoration-none">
                                     <i class="fas fa-chevron-right"></i>
                                     <span class=""> CONTACT</span>
                                 </a>
                             </div>
+                             
                             <div class="fw_link_group">
-                                <a href="about_us.html" class="text-decoration-none">
-                                    <i class="fas fa-chevron-right"></i>
-                                    <span class=""> ABOUT US</span>
-                                </a>
-                            </div>
-                            <div class="fw_link_group">
-                                <a href="faq.html" class="text-decoration-none">
+                                <a href="{{route('faq')}}" class="text-decoration-none">
                                     <i class="fas fa-chevron-right"></i>
                                     <span class=""> FAQ</span>
                                 </a>
@@ -53,7 +48,7 @@
                             <div class="fw_link_group">
                                 <a href="family_portrait.html" class="text-decoration-none">
                                     <i class="fas fa-chevron-right"></i>
-                                    <span class=""> FAMILY PORTRAIT</span>
+                                    <span class="{{route('family.portait')}}"> FAMILY PORTRAIT</span>
                                 </a>
                             </div>
                             <div class="fw_link_group">
@@ -84,13 +79,23 @@
                     </div>
                 </div>
                 <div class="col-lg-3">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="fw_3">
                         <p class="h4 fw_head">NEWSLETTER</p>
                         <p class="pt-3">
                             Sign up for the latest news, offers and styles
                         </p>
-                        <form action="#" class="fw_news_letter">
-                            <input type="email" class="form-control form-control-lg fw_input" placeholder="Email address" required>
+                        <form action="{{route('newsletter.save')}}" method="POST" class="fw_news_letter">
+                            @csrf
+                            <input name="email" type="email" class="form-control form-control-lg fw_input" placeholder="Email address" required>
                             <input type="submit" class="btn btn-success mt-2 shadow-none fw_sb" value="SUBSCRIBE">
                         </form>
                     </div>
