@@ -69,6 +69,20 @@
                         </a></li>
 
                         @endguest
+
+                        <li class="">
+                            <a href="cart.html" class="">
+                            <a href="{{ route('carts') }}"><i class="fas fa-shopping-cart"></i></a>
+                            @if (Session::get('cartCount'))
+                                <div id="CartCount" class="site-header__cart-count">
+                                    <span>{{Session::get('cartCount')}}</span> 
+                                </div>  
+                            @endif 
+                            </a>
+                        </li>
+
+                        
+
                     </ul>
                 </div>
             </div>
