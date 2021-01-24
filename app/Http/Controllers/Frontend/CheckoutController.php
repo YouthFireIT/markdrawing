@@ -31,6 +31,7 @@ class CheckoutController extends Controller
      * return Checkout Response
      */
     public function store(Request $request){
+        // dd(Auth::user()->id)
         // return $request;
         $carts = Session::get('product');
         if (Session::has('product')) {
@@ -41,9 +42,9 @@ class CheckoutController extends Controller
         // dd($carts);
         if (Auth::check()) {
                 $order = new Order();
-                if(!empty(Auth::user()->id())){
-                    $order->user_id = Auth::user()->id();
-                } 
+                // if(!empty(Auth::user()->id())){
+                    $order->user_id = Auth::user()->id;
+                // } 
                 $order->phone = $request->phone;
                 $order->email = $request->email;
                 $order->name = $request->first_name;
